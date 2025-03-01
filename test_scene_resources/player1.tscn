@@ -1,24 +1,13 @@
-[gd_scene load_steps=19 format=4 uid="uid://lvl0jvu6h5j"]
+[gd_scene load_steps=16 format=4 uid="uid://lvl0jvu6h5j"]
 
 [ext_resource type="Script" path="res://test_scene_resources/char_movement.gd" id="1_1ru1d"]
-[ext_resource type="Shader" path="res://test_scene_resources/pixelart_stylizer.gdshader" id="2_57kjn"]
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://test_scene_resources/camera.tscn" id="3_n3i7u"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fgswe"]
 radius = 0.3
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wonp1"]
-render_priority = 0
-shader = ExtResource("2_57kjn")
-shader_parameter/highlights_enabled = true
-shader_parameter/shadow_strength = 0.4
-shader_parameter/highlight_strength = 0.1
-shader_parameter/highlight_color = Color(1, 1, 1, 1)
-shader_parameter/shadow_color = Color(0, 0, 0, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhpsr"]
 resource_name = "Beta_Joints_MAT1"
-next_pass = SubResource("ShaderMaterial_wonp1")
 cull_mode = 2
 albedo_color = Color(0.612501, 0.387875, 0.350894, 1)
 metallic = 0.5
@@ -243,18 +232,8 @@ bind/64/name = &"mixamorig_LeftToe_End"
 bind/64/bone = -1
 bind/64/pose = Transform3D(-99.9718, 2.3737, 0.000142677, -3.08364e-05, -0.00731543, 100, 2.37369, 99.9719, 0.00730814, 8.20544, -17.246, -0.196223)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2m0h"]
-render_priority = 0
-shader = ExtResource("2_57kjn")
-shader_parameter/highlights_enabled = true
-shader_parameter/shadow_strength = 0.4
-shader_parameter/highlight_strength = 0.1
-shader_parameter/highlight_color = Color(1, 1, 1, 1)
-shader_parameter/shadow_color = Color(0, 0, 0, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vdrr"]
 resource_name = "Beta_HighLimbsGeoSG3"
-next_pass = SubResource("ShaderMaterial_r2m0h")
 cull_mode = 2
 albedo_color = Color(0.924613, 0.585875, 0.550365, 1)
 roughness = 0.808292

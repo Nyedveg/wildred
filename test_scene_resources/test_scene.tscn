@@ -132,7 +132,6 @@ fog_sky_affect = 0.345
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jgvvo"]
 render_priority = 0
 shader = ExtResource("2_jk4g7")
-shader_parameter/shadows_enabled = true
 shader_parameter/highlights_enabled = true
 shader_parameter/shadow_strength = 0.4
 shader_parameter/highlight_strength = 0.1
@@ -145,7 +144,6 @@ next_pass = SubResource("ShaderMaterial_jgvvo")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xt8g6"]
 render_priority = 0
 shader = ExtResource("2_jk4g7")
-shader_parameter/shadows_enabled = true
 shader_parameter/highlights_enabled = true
 shader_parameter/shadow_strength = 0.4
 shader_parameter/highlight_strength = 0.1
@@ -158,7 +156,6 @@ next_pass = SubResource("ShaderMaterial_xt8g6")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23cgp"]
 render_priority = 0
 shader = ExtResource("2_jk4g7")
-shader_parameter/shadows_enabled = true
 shader_parameter/highlights_enabled = true
 shader_parameter/shadow_strength = 0.4
 shader_parameter/highlight_strength = 0.1
@@ -171,7 +168,6 @@ next_pass = SubResource("ShaderMaterial_23cgp")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s41ke"]
 render_priority = 0
 shader = ExtResource("2_jk4g7")
-shader_parameter/shadows_enabled = true
 shader_parameter/highlights_enabled = true
 shader_parameter/shadow_strength = 0.4
 shader_parameter/highlight_strength = 0.1
@@ -184,7 +180,6 @@ next_pass = SubResource("ShaderMaterial_s41ke")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pqfu5"]
 render_priority = 0
 shader = ExtResource("2_jk4g7")
-shader_parameter/shadows_enabled = true
 shader_parameter/highlights_enabled = true
 shader_parameter/shadow_strength = 0.4
 shader_parameter/highlight_strength = 0.1

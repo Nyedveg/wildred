@@ -10,7 +10,6 @@ radius = 0.3
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wonp1"]
 render_priority = 0
 shader = ExtResource("2_57kjn")
-shader_parameter/shadows_enabled = true
 shader_parameter/highlights_enabled = true
 shader_parameter/shadow_strength = 0.4
 shader_parameter/highlight_strength = 0.1
@@ -247,7 +246,6 @@ bind/64/pose = Transform3D(-99.9718, 2.3737, 0.000142677, -3.08364e-05, -0.00731
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r2m0h"]
 render_priority = 0
 shader = ExtResource("2_57kjn")
-shader_parameter/shadows_enabled = true
 shader_parameter/highlights_enabled = true
 shader_parameter/shadow_strength = 0.4
 shader_parameter/highlight_strength = 0.1

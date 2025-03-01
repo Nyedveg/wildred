@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bwduvm8fvko6x"]
+[gd_scene load_steps=23 format=3 uid="uid://bwduvm8fvko6x"]
 
 [ext_resource type="PackedScene" uid="uid://lvl0jvu6h5j" path="res://test_scene_resources/player1.tscn" id="1_y4xyl"]
 [ext_resource type="Shader" path="res://test_scene_resources/pixelart_stylizer.gdshader" id="2_jk4g7"]
@@ -29,6 +29,10 @@ uniform float exposure : hint_range(0, 128) = 1.0;
 
 uniform sampler2D cloud_texture;
 uniform sampler2D cloud_texture2;
+uniform vec2 cloud_direction;
+uniform vec2 cloud_direction2;
+uniform vec2 cloud_scale;
+uniform float cloud_distance;
 
 void sky() {
 	float v_angle = acos(clamp(EYEDIR.y, -1.0, 1.0));
@@ -83,6 +87,8 @@ void sky() {
 	vec3 ground = mix(ground_horizon_color.rgb, ground_bottom_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / ground_curve), 0.0, 1.0));
 	ground *= ground_energy;
 	
+	
+	
 	COLOR = mix(ground, sky, step(0.0, EYEDIR.y)) * exposure;
 }
 "
@@ -94,9 +100,15 @@ width = 1024
 height = 1024
 noise = SubResource("FastNoiseLite_fh7sy")
 
+[sub_resource type="Gradient" id="Gradient_8d7rn"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_m8ymx"]
+
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_82ce5"]
 width = 1024
 height = 1024
+color_ramp = SubResource("Gradient_8d7rn")
+noise = SubResource("FastNoiseLite_m8ymx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iybsl"]
 shader = SubResource("Shader_k7t3w")
@@ -112,6 +124,10 @@ shader_parameter/ground_energy = 1.0
 shader_parameter/sun_angle_max = 4.1113
 shader_parameter/sun_curve = 0.15
 shader_parameter/exposure = 1.0
+shader_parameter/cloud_direction = null
+shader_parameter/cloud_direction2 = null
+shader_parameter/cloud_scale = null
+shader_parameter/cloud_distance = null
 shader_parameter/cloud_texture = SubResource("NoiseTexture2D_cvor0")
 shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_82ce5")
 

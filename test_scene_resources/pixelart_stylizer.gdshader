@@ -13,15 +13,6 @@ uniform vec3 shadow_color : source_color = vec3(0.0);
 
 varying mat4 model_view_matrix;
 
-
-float getDepth(vec2 screen_uv, sampler2D depth_texture, mat4 inv_projection_matrix){
-	float raw_depth = texture(depth_texture, screen_uv)[0];
-	vec3 normalized_device_coordinates = vec3(screen_uv * 2.0 - 1.0, raw_depth);
-    vec4 view_space = inv_projection_matrix * vec4(normalized_device_coordinates, 1.0);	
-	view_space.xyz /= view_space.w;	
-	return -view_space.z;
-}
-
 vec3 getPos(float depth, mat4 mvm, mat4 ipm, vec2 suv, mat4 wm, mat4 icm){
   vec4 pos = inverse(mvm) * ipm * vec4((suv * 2.0 - 1.0), depth * 2.0 - 1.0, 1.0);
   pos.xyz /= (pos.w+0.0001*(1.-abs(sign(pos.w))));

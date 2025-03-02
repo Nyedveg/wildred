@@ -15,7 +15,7 @@ shader_parameter/night_bottom_color = Color(0, 0.0212807, 0.0732733, 1)
 shader_parameter/horizon_color = Color(0.0523318, 0.715253, 0.692255, 1)
 shader_parameter/horizon_blur = 1.0
 shader_parameter/sun_color = Color(10, 8, 1, 1)
-shader_parameter/sun_sunset_color = Color(1, 0.74902, 0.176471, 1)
+shader_parameter/sun_sunset_color = Color(11.1882, 0.223529, 0.690196, 1)
 shader_parameter/sun_size = 0.057
 shader_parameter/sun_blur = 4.217
 shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
@@ -30,13 +30,13 @@ shader_parameter/clouds_direction = 0.2
 shader_parameter/clouds_scale = 1.0
 shader_parameter/clouds_cutoff = 0.3
 shader_parameter/clouds_fuzziness = 0.5
-shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_weight = 0.62
 shader_parameter/clouds_blur = 0.25
 shader_parameter/stars_speed = 1.0
 shader_parameter/stars_scale = 3.0
 shader_parameter/stars_opacity = 0.45
 shader_parameter/stars_texture = ExtResource("3_0oqq5")
-shader_parameter/overwritten_time = 3805.4
+shader_parameter/overwritten_time = 4388.81
 
 [sub_resource type="Sky" id="Sky_l4dqn"]
 sky_material = SubResource("ShaderMaterial_msgkm")
@@ -48,11 +48,11 @@ ambient_light_source = 3
 
 [node name="Daytime_Cycle" type="Node3D"]
 script = ExtResource("1_ala5e")
-day_time = 14.054
-latitude = -47.0
+latitude = -50.0
 planet_axial_tilt = 28.24
 moon_orbital_period = 30.15
 use_day_time_for_shader = true
+time_scale = 0.05
 sun_base_enegry = 1.0
 moon_base_enegry = 0.1
 
@@ -60,14 +60,15 @@ moon_base_enegry = 0.1
 environment = SubResource("Environment_bh1jy")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.895534, -0.374594, 0.240206, -0.376289, -0.349315, 0.858129, -0.237543, -0.858871, -0.453778, 0, 0, 0)
+transform = Transform3D(0.213227, -3.34849e-08, -0.977002, -0.977003, -2.80971e-08, -0.213227, -2.03111e-08, 1, -3.87059e-08, 0, 0, 0)
 rotation_order = 4
+light_energy = 0.0
 shadow_enabled = true
 shadow_opacity = 0.75
 shadow_blur = 5.0
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.69297, 0.715695, 0.0870226, -0.641861, 0.667396, -0.377619, -0.328339, 0.205823, 0.921863, 0, 0, 0)
+transform = Transform3D(0.654402, -0.74947, -0.100264, -0.751049, -0.62888, -0.201083, 0.0876512, 0.206892, -0.97443, 0, 0, 0)
 rotation_order = 4
 light_color = Color(1, 1, 0.6, 1)
 light_energy = 0.0

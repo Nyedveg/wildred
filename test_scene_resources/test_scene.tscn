@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwduvm8fvko6x"]
+[gd_scene load_steps=10 format=3 uid="uid://bwduvm8fvko6x"]
 
 [ext_resource type="PackedScene" uid="uid://lvl0jvu6h5j" path="res://test_scene_resources/player1.tscn" id="1_y4xyl"]
-[ext_resource type="Shader" path="res://test_scene_resources/outline.gdshader" id="2_jk4g7"]
 [ext_resource type="PackedScene" uid="uid://bjjceeyq3csc3" path="res://sky/daytime_cycle.tscn" id="3_0n6tj"]
+[ext_resource type="PackedScene" uid="uid://bbps6x4qwj2ar" path="res://test_scene_resources/tower/tower.glb" id="3_p6cxn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2ybw"]
 albedo_color = Color(0.487738, 0.401969, 0.32566, 1)
@@ -13,29 +13,9 @@ albedo_color = Color(0.487738, 0.401969, 0.32566, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3fkar"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s41ke"]
-render_priority = 0
-shader = ExtResource("2_jk4g7")
-shader_parameter/highlights_enabled = true
-shader_parameter/shadow_strength = 0.4
-shader_parameter/highlight_strength = 0.1
-shader_parameter/highlight_color = Color(1, 1, 1, 1)
-shader_parameter/shadow_color = Color(0, 0, 0, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r05fb"]
-next_pass = SubResource("ShaderMaterial_s41ke")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pqfu5"]
-render_priority = 0
-shader = ExtResource("2_jk4g7")
-shader_parameter/highlights_enabled = true
-shader_parameter/shadow_strength = 0.4
-shader_parameter/highlight_strength = 0.1
-shader_parameter/highlight_color = Color(1, 1, 1, 1)
-shader_parameter/shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y506l"]
-next_pass = SubResource("ShaderMaterial_pqfu5")
 
 [node name="Test_Scene" type="Node3D"]
 
@@ -48,39 +28,42 @@ sides = 40
 material = SubResource("StandardMaterial3D_s2ybw")
 
 [node name="player" parent="." instance=ExtResource("1_y4xyl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106514, 0, -0.0683672)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106514, 0, 13.1112)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(0.0412423, 0.00136626, -0.999148, -0.994744, 0.0938551, -0.0409322, 0.0937192, 0.995585, 0.00522988, -6.84554, 2.21822, 17.0961)
+transform = Transform3D(0.0412423, 0.00136626, -0.999148, -0.994744, 0.0938551, -0.0409322, 0.0937192, 0.995585, 0.00522988, -6.84554, 2.21822, -14.8099)
 use_collision = true
 size = Vector3(7.58105, 2.35913, 2.41992)
 material = SubResource("StandardMaterial3D_bmu24")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(0.541532, 0, -0.84068, 0, 1, 0, 0.84068, 0, 0.541532, 10.9992, 1.10911, 6.23542)
+transform = Transform3D(0.541532, 0, -0.84068, 0, 1, 0, 0.84068, 0, 0.541532, 10.9992, 1.10911, -25.6706)
 use_collision = true
 size = Vector3(7.58105, 2.35913, 2.41992)
 material = SubResource("StandardMaterial3D_4mjho")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(0.877933, 0, -0.478784, 0, 1, 0, 0.478784, 0, 0.877933, -4.6014, 0.660219, 0)
+transform = Transform3D(0.877933, 0, -0.478784, 0, 1, 0, 0.478784, 0, 0.877933, -4.6014, 0.660219, -31.906)
 use_collision = true
 size = Vector3(1.88965, 2.35913, 2.41992)
 material = SubResource("StandardMaterial3D_3fkar")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.64078, 0, -0.767725, 0, 1, 0, 0.767725, 0, -0.64078, 4.177, 0.334167, 16.4267)
+transform = Transform3D(-0.64078, 0, -0.767725, 0, 1, 0, 0.767725, 0, -0.64078, 4.177, 0.334167, -15.4793)
 use_collision = true
 size = Vector3(3.52344, 1.12305, 1.4209)
 material = SubResource("StandardMaterial3D_r05fb")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="."]
-transform = Transform3D(0.939124, 0, 0.343578, 0, 1, 0, -0.343578, 0, 0.939124, -12.3164, 3.04003, 32.568)
+transform = Transform3D(0.939124, 0, 0.343578, 0, 1, 0, -0.343578, 0, 0.939124, -12.3164, 3.04003, 0.662025)
 use_collision = true
 size = Vector3(7.1604, 7.00952, 6.22266)
 material = SubResource("StandardMaterial3D_y506l")
 
 [node name="Daytime_Cycle" parent="." instance=ExtResource("3_0n6tj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.956, 0)
-time_scale = 0.5
-moon_base_enegry = 0.2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+day_time = 19.8881
+clouds_weight = 0.62
+
+[node name="tower" parent="." instance=ExtResource("3_p6cxn")]
+transform = Transform3D(-0.4, 0, 6.03983e-08, 0, 0.4, 0, -6.03983e-08, 0, -0.4, 43.9659, 0, 89)

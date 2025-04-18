@@ -36,7 +36,7 @@ shader_parameter/stars_texture = ExtResource("3_0oqq5")
 shader_parameter/stars_speed = 1.0
 shader_parameter/stars_scale = 3.0
 shader_parameter/stars_opacity = 0.45
-shader_parameter/overwritten_time = 2846.93
+shader_parameter/overwritten_time = 2954.0
 
 [sub_resource type="Sky" id="Sky_l4dqn"]
 sky_material = SubResource("ShaderMaterial_msgkm")
@@ -63,7 +63,7 @@ moon_base_enegry = 0.1
 environment = SubResource("Environment_bh1jy")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.671101, 0.738362, 0.0666762, -0.714046, 0.619559, 0.326013, 0.199406, -0.266397, 0.943011, 0, 0, 0)
+transform = Transform3D(0.671101, 0.738362, 0.0666763, -0.714046, 0.619559, 0.326013, 0.199406, -0.266397, 0.943011, 0, 0, 0)
 rotation_order = 4
 shadow_enabled = true
 shadow_opacity = 0.75

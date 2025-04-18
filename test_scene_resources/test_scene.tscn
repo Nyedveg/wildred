@@ -75,7 +75,7 @@ material = SubResource("StandardMaterial3D_y506l")
 
 [node name="Daytime_Cycle" parent="." instance=ExtResource("3_0n6tj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-day_time = 4.4693
+day_time = 5.54
 clouds_weight = 0.62
 time_scale = 0.05
 

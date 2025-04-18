@@ -1,30 +1,49 @@
 extends CharacterBody3D
 
 @onready var camera_mount: Node3D = $camera_mount
-@onready var animation_player: AnimationPlayer = $visuals/mixamo_base/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $visuals/wildred_mc/AnimationPlayer
 @onready var visuals: Node3D = $visuals
+@onready var dust_particles: GPUParticles3D = $SlideDust
 
 var speed = 3.0
+var anim_state: String = ""
 
-# player movement
+# Movement settings
 @export var walking_speed = 6.0
 @export var running_speed = 10.0
 @export var jump_velocity = 5.0
 @export var can_double_jump = true
-@export var slide_force = 2
+@export var slide_force = 2.0
+@export var slide_duration = 0.8
 @export var frictionFromSpeedCoefficient = 0.8
 @export var frictionBase = 2
-var readyToSlide = true
 
-# 3d person camera controller
+# Camera sensitivity
 var sens_horizontal = 0.5
 var sens_vertical = 0.5
 
-var running: bool = false
+# States
+var running = false
+var crouching = false
+var sliding = false
+var climbing = false
+var wallrunning = false
+var readyToSlide = true
+var slide_triggered = false
+
+# Slide timer
+var slide_timer: Timer
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+
+	# Slide timer setup
+	slide_timer = Timer.new()
+	slide_timer.wait_time = slide_duration
+	slide_timer.one_shot = true
+	add_child(slide_timer)
+	slide_timer.connect("timeout", Callable(self, "_on_slide_timer_timeout"))
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x * sens_horizontal))
@@ -32,88 +51,126 @@ func _input(event: InputEvent) -> void:
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y) * sens_vertical)
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("sprint"):
-		speed = running_speed
-		running = true
-	else:
-		speed = walking_speed
-		running = false 
-	
-	# Add the gravity.
-	if not is_on_floor():
+	var on_floor = is_on_floor()
+	var input_dir := Input.get_vector("left", "right", "forward", "backward")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+	# Gravity
+	if not on_floor:
 		velocity += get_gravity() * delta
 	else:
 		can_double_jump = true
 
-	# Handle jump.
-	if Input.is_action_pressed("ui_accept") and not $RayCastRight.is_colliding() and not $RayCastLeft.is_colliding():
-		if Input.is_action_just_pressed("ui_accept"):
-			if is_on_floor():
-				velocity.y = jump_velocity
+	# Crouch state tracking
+	crouching = Input.is_action_pressed("crouch")
+
+	# Jumping logic + jump animations
+	if Input.is_action_just_pressed("ui_accept") and not $RayCastRight.is_colliding() and not $RayCastLeft.is_colliding():
+		if on_floor:
+			velocity.y = jump_velocity
+			if velocity.length() < 2:
+				play_anim("jumping")
 			else:
-				if can_double_jump:
-					can_double_jump = false
-					velocity.y = jump_velocity * 0.8
-		velocity.y+= (jump_velocity - 2) * delta
-		
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("left", "right", "forward", "backward")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	if running:
-		if animation_player.current_animation != "running":
-			animation_player.play("running")
-	else:
-		if animation_player.current_animation != "walking":
-			animation_player.play("walking")
-			
-	visuals.look_at(position + direction)
-	velocity.x += direction.x * speed * delta
-	velocity.z += direction.z * speed * delta
-	if animation_player.current_animation != "idle" and not velocity.length() > 0:
-		animation_player.play("idle")
-	velocity.x = move_toward(velocity.x, 0, (abs(velocity.x*frictionFromSpeedCoefficient )+frictionBase)*delta)
-	velocity.z = move_toward(velocity.z, 0, (abs(velocity.z*frictionFromSpeedCoefficient )+frictionBase)*delta)
-		
-		#Crouching and Sliding  LACKS ANIMATIONS
-	if Input.is_action_just_pressed("crouch"):
-		scale = Vector3(1.0, 0.5, 1.0)
-		position.y -= 0.1
-		if velocity.length() > 0:
-			if  readyToSlide:
-				readyToSlide = false
-				var slide_direction = velocity
-				slide_direction.y = 0  # Ensure we don't add force in the y direction
-				velocity = slide_direction * slide_force
-				$readyToSlide.start()
-	if Input.is_action_just_released("crouch"):
-		scale = Vector3(1.0, 1.0, 1.0)
-		position.y += 0.1
-		
-	#Climbing, LACKS ANIMATIONS AND REALISTIC CLIMBING
-	if $RayCastClimb.is_colliding() and not $RayCastClimb2.is_colliding():
-		velocity.y = 6
-		
-	#Wall Running, LACKS ANIMATION
+				play_anim("running_jump")
+		elif can_double_jump:
+			can_double_jump = false
+			velocity.y = jump_velocity * 0.8
+			if velocity.length() < 2:
+				play_anim("jumping")
+			else:
+				play_anim("running_jump")
+
+	# Sliding logic
+	if crouching and direction.length() > 0 and readyToSlide and not sliding and not slide_triggered and on_floor:
+		sliding = true
+		slide_triggered = true
+		readyToSlide = false
+		slide_timer.start()
+
+		var flat_velocity = velocity
+		flat_velocity.y = 0
+		var preserved_momentum = flat_velocity.normalized() * clamp(flat_velocity.length(), 3.0, 10.0)
+		velocity = preserved_momentum * (slide_force * 0.6)
+
+		if dust_particles:
+			dust_particles.restart()
+
+	if not Input.is_action_pressed("crouch"):
+		slide_triggered = false
+
+	# Face movement direction (not while sliding)
+	if direction.length() > 0 and not sliding:
+		visuals.look_at(position + direction)
+
+	# Speed setting
+	running = Input.is_action_pressed("sprint") and not crouching and not sliding
+	speed = running_speed if running else walking_speed
+
+	if not sliding:
+		velocity.x += direction.x * speed * delta
+		velocity.z += direction.z * speed * delta
+
+	# Wallrunning logic
+	wallrunning = false
 	if $RayCastRight.is_colliding():
+		wallrunning = true
 		can_double_jump = true
 		velocity += transform.basis.x * 3 * delta
-		velocity.y += 6 *delta
+		velocity.y += 6 * delta
 		if Input.is_action_just_pressed("ui_accept"):
 			velocity += transform.basis.x * -8
 			velocity.y = 2
-	if $RayCastLeft.is_colliding():
+	elif $RayCastLeft.is_colliding():
+		wallrunning = true
 		can_double_jump = true
 		velocity += transform.basis.x * -3 * delta
-		velocity.y += 6 *delta
+		velocity.y += 6 * delta
 		if Input.is_action_just_pressed("ui_accept"):
 			velocity += transform.basis.x * 8
 			velocity.y = 2
-	
-	
+
+	# Climbing logic
+	climbing = $RayCastClimb.is_colliding() and not $RayCastClimb2.is_colliding()
+	if climbing:
+		velocity.y = 6
+
+	# Friction
+	if not sliding:
+		velocity.x = move_toward(velocity.x, 0, (abs(velocity.x * frictionFromSpeedCoefficient) + frictionBase) * delta)
+		velocity.z = move_toward(velocity.z, 0, (abs(velocity.z * frictionFromSpeedCoefficient) + frictionBase) * delta)
+
+	# Animation update
+	update_animation(direction, on_floor)
+
 	move_and_slide()
 
+func update_animation(direction: Vector3, on_floor: bool):
+	if sliding:
+		play_anim("slide")
+	elif climbing:
+		play_anim("climbing")
+	elif wallrunning:
+		play_anim("wall_run_001")
+	elif not on_floor and velocity.y < 0:
+		play_anim("falling_idle")
+	elif crouching:
+		if direction.length() > 0:
+			play_anim("crouch_walk")
+		else:
+			play_anim("crouch_idle_001")
+	elif direction.length() > 0:
+		play_anim("running") if running else play_anim("walking")
+	else:
+		play_anim("idle")
 
-func _on_ready_to_slide_timeout() -> void:
+func play_anim(new_anim: String):
+	if anim_state == new_anim:
+		return
+	anim_state = new_anim
+	animation_player.play(new_anim)
+
+func _on_slide_timer_timeout() -> void:
+	sliding = false
 	readyToSlide = true
+	if dust_particles:
+		dust_particles.emitting = false

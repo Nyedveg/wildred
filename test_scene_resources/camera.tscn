@@ -20,5 +20,6 @@ size = 4.68493
 
 [node name="Postprocess" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.873369)
+visible = false
 mesh = SubResource("PlaneMesh_57txa")
 surface_material_override/0 = SubResource("ShaderMaterial_hpojt")

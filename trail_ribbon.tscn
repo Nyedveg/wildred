@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf2ufl1nb8yr1"]
+
+[ext_resource type="Script" uid="uid://u0vr4emxuo0l" path="res://trail_ribbon.gd" id="1_8dlll"]
+[ext_resource type="Material" uid="uid://4bkclx5ivjdd" path="res://test_scene_resources/heat_distortion_material.tres" id="2_5mkne"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8dlll"]
+material = ExtResource("2_5mkne")
+
+[node name="trailRibbon" type="Node3D"]
+script = ExtResource("1_8dlll")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_8dlll")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

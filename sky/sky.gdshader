@@ -33,7 +33,7 @@ group_uniforms clouds;
 	uniform vec3 clouds_top_color : source_color = vec3( 1.0, 1.0, 1.00 );
 	uniform vec3 clouds_middle_color : source_color = vec3( 0.92, 0.92, 0.98 );
 	uniform vec3 clouds_bottom_color : source_color = vec3( 0.83, 0.83, 0.94 );
-	uniform float clouds_speed : hint_range( 0.0, 20.0, 0.01 ) = 2.0;
+	uniform float clouds_speed : hint_range( 0.0, 20.0, 0.01 ) = 1.0;
 	uniform float clouds_direction : hint_range( -0.5, 0.5, 0.0 ) = 0.2;
 	uniform float clouds_scale : hint_range( 0.0, 4.0, 0.01 ) = 1.0;
 	uniform float clouds_cutoff : hint_range( 0.0, 1.0, 0.01 ) = 0.3;
@@ -54,7 +54,6 @@ group_uniforms settings;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Function for clouds noises. You can replace using "gen_fractal_ping_pong" with a simple texture reading.
-	// I was frustrated with the repeating texture that's why I included the algorithm in the code.
 	// Source: https://github.com/Auburn/FastNoiseLite/tree/master
 	const int PRIME_X = 501125321;
 	const int PRIME_Y = 1136930381;

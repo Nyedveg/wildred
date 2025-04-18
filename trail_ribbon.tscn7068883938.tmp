@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cf2ufl1nb8yr1"]
+
+[ext_resource type="Script" uid="uid://die3gxkenpxq1" path="res://trail_ribbon.gd" id="1_8dlll"]
+[ext_resource type="Material" uid="uid://4bkclx5ivjdd" path="res://test_scene_resources/heat_distortion_material.tres" id="2_5mkne"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_5mkne"]
+material = ExtResource("2_5mkne")
+
+[sub_resource type="Animation" id="Animation_5mkne"]
+resource_name = "fade_destroy"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i4v34"]
+_data = {
+&"fade_destroy": SubResource("Animation_5mkne")
+}
+
+[node name="trailRibbon" type="Node3D"]
+script = ExtResource("1_8dlll")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_5mkne")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i4v34")
+}

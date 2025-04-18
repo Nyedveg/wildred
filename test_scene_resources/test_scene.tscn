@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwduvm8fvko6x"]
+[gd_scene load_steps=14 format=3 uid="uid://bwduvm8fvko6x"]
 
-[ext_resource type="PackedScene" uid="uid://lvl0jvu6h5j" path="res://test_scene_resources/player1.tscn" id="1_y4xyl"]
+[ext_resource type="PackedScene" uid="uid://lvl0jvu6h5j" path="res://test_scene_resources/player.tscn" id="1_y4xyl"]
 [ext_resource type="PackedScene" uid="uid://bjjceeyq3csc3" path="res://sky/daytime_cycle.tscn" id="3_0n6tj"]
-[ext_resource type="PackedScene" uid="uid://bbps6x4qwj2ar" path="res://test_scene_resources/tower/tower.glb" id="3_p6cxn"]
+[ext_resource type="PackedScene" uid="uid://bbps6x4qwj2ar" path="res://test_scene_resources/models/tower.glb" id="3_p6cxn"]
+[ext_resource type="PackedScene" uid="uid://bcfqqity88im2" path="res://test_scene_resources/campfire.tscn" id="4_q66er"]
+[ext_resource type="PackedScene" uid="uid://d4mvahmoqcyqj" path="res://water/ocean_surface/ocean_surface.tscn" id="5_27atl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2ybw"]
 albedo_color = Color(0.487738, 0.401969, 0.32566, 1)
@@ -16,6 +18,14 @@ albedo_color = Color(0.487738, 0.401969, 0.32566, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r05fb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y506l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27atl"]
+transparency = 1
+albedo_color = Color(0.305882, 0.737255, 1, 0.729412)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t3csr"]
+material = SubResource("StandardMaterial3D_27atl")
+size = Vector2(2000, 2000)
 
 [node name="Test_Scene" type="Node3D"]
 
@@ -54,6 +64,12 @@ use_collision = true
 size = Vector3(3.52344, 1.12305, 1.4209)
 material = SubResource("StandardMaterial3D_r05fb")
 
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.763908, 0, 0.645325, 0, 1, 0, -0.645325, 0, 0.763908, -126.773, 0.483571, 5.51538)
+use_collision = true
+size = Vector3(7.1604, 21.3828, 6.22266)
+material = SubResource("StandardMaterial3D_y506l")
+
 [node name="CSGBox3D5" type="CSGBox3D" parent="."]
 transform = Transform3D(0.939124, 0, 0.343578, 0, 1, 0, -0.343578, 0, 0.939124, -12.3164, 3.04003, 0.662025)
 use_collision = true
@@ -62,8 +78,34 @@ material = SubResource("StandardMaterial3D_y506l")
 
 [node name="Daytime_Cycle" parent="." instance=ExtResource("3_0n6tj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-day_time = 19.8881
+day_time = 4.4693
 clouds_weight = 0.62
+time_scale = 0.05
 
 [node name="tower" parent="." instance=ExtResource("3_p6cxn")]
 transform = Transform3D(-0.4, 0, 6.03983e-08, 0, 0.4, 0, -6.03983e-08, 0, -0.4, 43.9659, 0, 89)
+
+[node name="Campfire" parent="." instance=ExtResource("4_q66er")]
+
+[node name="OceanSurface" parent="." instance=ExtResource("5_27atl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.06726, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.11777, 0)
+mesh = SubResource("PlaneMesh_t3csr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.1477, 0)
+mesh = SubResource("PlaneMesh_t3csr")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.28341, 0)
+mesh = SubResource("PlaneMesh_t3csr")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.59498, 0)
+mesh = SubResource("PlaneMesh_t3csr")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.63315, 0)
+mesh = SubResource("PlaneMesh_t3csr")

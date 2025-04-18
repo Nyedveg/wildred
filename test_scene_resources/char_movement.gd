@@ -3,6 +3,11 @@ extends CharacterBody3D
 @onready var camera_mount: Node3D = $camera_mount
 @onready var animation_player: AnimationPlayer = $visuals/mixamo_base/AnimationPlayer
 @onready var visuals: Node3D = $visuals
+@onready var gpu_particles_3d: GPUParticles3D = $visuals/dust_particle/GPUParticles3D
+@onready var distortion_emitter: Node3D = $visuals/Distortion_emitter
+@onready var trail_timer: Timer = $trail_timer
+@export var trail_scene: PackedScene
+var trail_nodes := []
 
 var speed = 3.0
 
@@ -19,6 +24,9 @@ var running: bool = false
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	trail_timer.wait_time = 0.1
+	trail_timer.one_shot = false
+	trail_timer.start()
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -50,9 +58,17 @@ func _physics_process(delta: float) -> void:
 		if running:
 			if animation_player.current_animation != "running":
 				animation_player.play("running")
+				if is_on_floor():
+					gpu_particles_3d.emitting = true
+				else:
+					gpu_particles_3d.emitting = false
 		else:
 			if animation_player.current_animation != "walking":
 				animation_player.play("walking")
+				if is_on_floor():
+					gpu_particles_3d.emitting = true
+				else:
+					gpu_particles_3d.emitting = false
 			
 		visuals.look_at(position + direction)
 		velocity.x = direction.x * speed
@@ -60,7 +76,16 @@ func _physics_process(delta: float) -> void:
 	else:
 		if animation_player.current_animation != "idle":
 			animation_player.play("idle")
+			gpu_particles_3d.emitting = false
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
+
+
+func _on_trail_timer_timeout() -> void:
+	if running:
+		var trail_instance = trail_scene.instantiate()
+		trail_instance.global_transform = distortion_emitter.global_transform
+		get_tree().current_scene.add_child(trail_instance)
+		trail_nodes.append(trail_instance)

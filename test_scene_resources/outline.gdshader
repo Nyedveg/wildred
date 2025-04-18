@@ -32,10 +32,10 @@ void vertex(){
 
 void fragment() {
 	vec2 e = vec2(1./VIEWPORT_SIZE.xy);
-	
+
 	float depth_diff = 0.0;
 	float neg_depth_diff = .5;
-	
+
 //	Highlights
 	float normal_diff = 0.;
 	if (highlights_enabled) {
@@ -53,7 +53,6 @@ void fragment() {
 		normal_diff = clamp(normal_diff-neg_depth_diff, 0., 1.);
 //		ALBEDO = vec3(normal_diff);
 	}
-	
 
 	vec3 original_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
 	vec3 final_highlight_color = mix(original_color, highlight_color, highlight_strength);

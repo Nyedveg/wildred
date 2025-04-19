@@ -91,6 +91,7 @@ func _ready() -> void :
 func _process( delta: float ) -> void :
 	if not Engine.is_editor_hint() : # We don't want a time lapse in the editor
 		day_time += delta * time_scale
+		RenderingServer.global_shader_parameter_set("day_time", day_time)
 
 func _update() -> void :
 	_update_sun()
@@ -113,6 +114,12 @@ func _update_sun() -> void :
 		# Disabling light under the horizon
 		var sun_direction = sun.to_global( Vector3( 0.0, 0.0, 1.0 )).normalized()
 		sun.light_energy = smoothstep( -0.05, 0.1, sun_direction.y ) * sun_base_enegry
+		
+				# Adjust color temperature based on elevation
+		var t = clamp((sun_direction.y + 0.1) / 0.6, 0.0, 1.0)  # Smooth range for sunrise/sunset
+		var warm_color = Color(1.0, 0.5, 0.2) # Orange-ish at horizon
+		var white_color = Color(1.0, 1.0, 1.0) # Noon white
+		sun.light_color = warm_color.lerp(white_color, t)
 
 func _update_moon() -> void :
 	var day_progress : float = day_time / HOURS_IN_DAY

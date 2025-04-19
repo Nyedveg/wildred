@@ -9,34 +9,34 @@ shader = ExtResource("2_ppure")
 shader_parameter/day_top_color = Color(0.473562, 0.599887, 0.732021, 1)
 shader_parameter/day_bottom_color = Color(0.673751, 0.754333, 0.879374, 1)
 shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
-shader_parameter/sunset_bottom_color = Color(0.917647, 0.470588, 0.470588, 1)
-shader_parameter/night_top_color = Color(0.00148392, 0, 0.0789542, 1)
+shader_parameter/sunset_bottom_color = Color(0.982853, 0.577674, 7.70092e-07, 1)
+shader_parameter/night_top_color = Color(0.00297736, 2.10572e-08, 0.124046, 1)
 shader_parameter/night_bottom_color = Color(0, 0.0212807, 0.0732733, 1)
-shader_parameter/horizon_color = Color(0.0523318, 0.715253, 0.692255, 1)
+shader_parameter/horizon_color = Color(0.570286, 0.637794, 0.66033, 1)
 shader_parameter/horizon_blur = 1.0
 shader_parameter/sun_color = Color(10, 8, 1, 1)
-shader_parameter/sun_sunset_color = Color(11.1882, 0.223529, 0.690196, 1)
-shader_parameter/sun_size = 0.057
-shader_parameter/sun_blur = 4.217
-shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/sun_sunset_color = Color(10, 0.505882, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(0.868413, 0.959152, 0.998049, 1)
 shader_parameter/moon_size = 0.06
 shader_parameter/moon_blur = 0.1
-shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_edge_color = Color(0.947199, 0.947199, 0.947199, 1)
 shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
-shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
-shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
-shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_middle_color = Color(0.903598, 0.903598, 0.903598, 1)
+shader_parameter/clouds_bottom_color = Color(0.650128, 0.650128, 0.650128, 1)
+shader_parameter/clouds_speed = 1.0
 shader_parameter/clouds_direction = 0.2
 shader_parameter/clouds_scale = 1.0
 shader_parameter/clouds_cutoff = 0.3
-shader_parameter/clouds_fuzziness = 0.5
-shader_parameter/clouds_weight = 0.62
+shader_parameter/clouds_fuzziness = 0.71
+shader_parameter/clouds_weight = 0.0
 shader_parameter/clouds_blur = 0.25
 shader_parameter/stars_texture = ExtResource("3_0oqq5")
 shader_parameter/stars_speed = 1.0
-shader_parameter/stars_scale = 3.0
-shader_parameter/stars_opacity = 0.45
-shader_parameter/overwritten_time = 2954.0
+shader_parameter/stars_scale = 1.0
+shader_parameter/stars_opacity = 0.3
+shader_parameter/overwritten_time = 2940.0
 
 [sub_resource type="Sky" id="Sky_l4dqn"]
 sky_material = SubResource("ShaderMaterial_msgkm")
@@ -47,10 +47,11 @@ sky = SubResource("Sky_l4dqn")
 ambient_light_source = 3
 glow_enabled = true
 glow_blend_mode = 0
+volumetric_fog_density = 0.01
 
 [node name="Daytime_Cycle" type="Node3D"]
 script = ExtResource("1_ala5e")
-day_time = 7.03
+day_time = 5.4
 latitude = -50.0
 planet_axial_tilt = 12.19
 moon_orbital_period = 30.15
@@ -63,16 +64,17 @@ moon_base_enegry = 0.1
 environment = SubResource("Environment_bh1jy")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.671101, 0.738362, 0.0666763, -0.714046, 0.619559, 0.326013, 0.199406, -0.266397, 0.943011, 0, 0, 0)
+transform = Transform3D(0.604078, 0.756613, -0.250254, -0.770272, 0.634874, 0.0601404, 0.204383, 0.156434, 0.96631, 0, 0, 0)
 rotation_order = 4
+light_color = Color(1, 0.63345, 0.413521, 1)
+light_energy = 0.82569
 shadow_enabled = true
 shadow_opacity = 0.75
 shadow_blur = 5.0
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.726688, 0.000162972, 0.686967, -0.686967, 0.00013675, 0.726689, 2.44873e-05, -1, 0.000211331, 0, 0, 0)
+transform = Transform3D(0.722447, -0.307014, 0.619526, -0.689748, -0.257616, 0.67667, -0.0481477, -0.916175, -0.397876, 0, 0, 0)
 rotation_order = 4
-light_color = Color(1, 1, 0.6, 1)
 light_energy = 0.1
 shadow_enabled = true
 shadow_opacity = 0.25

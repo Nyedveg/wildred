@@ -28,6 +28,8 @@ func _ready():
 	_set_weather(WeatherType.CLEAR)
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("Rain"):
+		_set_weather(WeatherType.RAIN)
 	_update_weather_transition(delta)
 	_update_rain_position()
 

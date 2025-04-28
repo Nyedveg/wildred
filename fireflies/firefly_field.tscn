@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cokfeh47u8xnh" path="res://fireflies/circle_05.png" id="1_d68k6"]
 
 [sub_resource type="Gradient" id="Gradient_i2fct"]
-offsets = PackedFloat32Array(0, 0.125908, 0.280872, 0.368039, 0.467312, 0.750605, 0.8523)
-colors = PackedColorArray(0.654902, 1, 0, 0, 0.654902, 1, 0, 1, 0.654902, 1, 0, 1, 0.654902, 1, 0, 0, 0.654902, 1, 0, 1, 0.654902, 1, 0, 1, 0.654902, 1, 0, 0)
+offsets = PackedFloat32Array(0, 0.125908, 0.750605, 0.8523)
+colors = PackedColorArray(0.654902, 1, 0, 0, 0.654902, 1, 0, 1, 0.654902, 1, 0, 1, 0.654902, 1, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4saxa"]
 gradient = SubResource("Gradient_i2fct")
@@ -45,6 +45,7 @@ collision_bounce = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_au3db"]
 transparency = 1
+blend_mode = 1
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_d68k6")
 billboard_mode = 3
@@ -55,7 +56,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_cbqcd"]
 material = SubResource("StandardMaterial3D_au3db")
-size = Vector2(0.2, 0.2)
+size = Vector2(0.05, 0.05)
 
 [node name="firefly_field" type="Node3D"]
 

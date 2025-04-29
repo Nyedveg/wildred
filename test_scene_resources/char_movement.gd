@@ -7,6 +7,7 @@ extends CharacterBody3D
 
 var speed = 3.0
 var anim_state: String = ""
+var direction: Vector3 = Vector3.ZERO
 
 # Movement settings
 @export var walking_speed = 6.0
@@ -17,6 +18,7 @@ var anim_state: String = ""
 @export var slide_duration = 0.8
 @export var frictionFromSpeedCoefficient = 0.8
 @export var frictionBase = 2
+@export var turn_speed = 5.0
 
 # Camera sensitivity
 var sens_horizontal = 0.5
@@ -56,7 +58,12 @@ func _physics_process(delta: float) -> void:
 	
 	var on_floor = is_on_floor()
 	var input_dir := Input.get_vector("left", "right", "forward", "backward").normalized()
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var turnToDirection := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if turnToDirection.length() > 0:  # Only interpolate if there's meaningful input
+		direction = direction.lerp(turnToDirection, turn_speed * delta).normalized()
+	else:
+		direction = direction.lerp(Vector3.ZERO, turn_speed * delta)  # Reset if no input
+	
 
 	# Gravity
 	if not on_floor:

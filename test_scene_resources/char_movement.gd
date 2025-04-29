@@ -16,7 +16,7 @@ var anim_state: String = ""
 @export var slide_force = 2.0
 @export var slide_duration = 0.8
 @export var frictionFromSpeedCoefficient = 0.8
-@export var frictionBase = 2
+@export var frictionBase = 4
 
 # Camera sensitivity
 var sens_horizontal = 0.5

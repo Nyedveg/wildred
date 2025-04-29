@@ -1,17 +1,17 @@
 [gd_resource type="Resource" script_class="WeatherResource" load_steps=2 format=3 uid="uid://b7h0s5etpfgmj"]
 
-[ext_resource type="Script" uid="uid://i3njswdtp257" path="res://sky/weatherresource.gd" id="1_72oj5"]
+[ext_resource type="Script" uid="uid://i3njswdtp257" path="res://scripts/weatherresource.gd" id="1_72oj5"]
 
 [resource]
 script = ExtResource("1_72oj5")
-clouds_cutoff = 0.3
-clouds_weight = 0.0
-sky_color = Color(0.5, 0.7, 1, 1)
-sun_energy = 1.0
-moon_energy = 0.1
-fog_enabled = false
-fog_density = 0.0
-fog_sky_affect = 0.0
+clouds_cutoff = 0.0
+clouds_weight = 0.7
+sky_color = Color(0.449853, 0.474733, 0.448982, 1)
+sun_energy = 0.2
+moon_energy = 0.05
+fog_enabled = true
+fog_density = 1.0
+fog_sky_affect = 1.0
 fog_color = Color(0.8, 0.8, 0.8, 1)
 particle_scene_path = ""
 particle_intensity = 1.0

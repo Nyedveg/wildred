@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://xhnl4bmbbajh"]
 
-[ext_resource type="Shader" uid="uid://2mldbu72tlw4" path="res://water/ocean.gdshader" id="1_1ul86"]
+[ext_resource type="Shader" path="res://water/ocean.gdshader" id="1_1ul86"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1ul86"]
 width = 2048

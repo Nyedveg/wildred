@@ -24,7 +24,7 @@ var current_params = {
 }
 
 var target_params = current_params.duplicate()
-var transition_speed: float = 0.005  # Will be calculated based on resource's transition duration
+var transition_speed: float = 0.5  # Will be calculated based on resource's transition duration
 
 # Lightning system parameters
 var lightning_timer: float = 0.0
@@ -67,7 +67,7 @@ func _find_player() -> void:
 
 func _update_particle_position() -> void:
 	if active_particles and player_node:
-		active_particles.global_position = player_node.global_position + Vector3(0, 10, 0)
+		active_particles.global_position = player_node.global_position
 
 func _update_weather_parameters(delta: float) -> void:
 	# Interpolate all parameters
@@ -81,8 +81,8 @@ func _update_weather_parameters(delta: float) -> void:
 	if daytime_cycle:
 		daytime_cycle.clouds_cutoff = current_params["clouds_cutoff"]
 		daytime_cycle.clouds_weight = current_params["clouds_weight"]
-		daytime_cycle.sun_base_enegry = current_params["sun_energy"]
-		daytime_cycle.moon_base_enegry = current_params["moon_energy"]
+		daytime_cycle.sun_base_energy = current_params["sun_energy"]
+		daytime_cycle.moon_base_energy = current_params["moon_energy"]
 		daytime_cycle.sky_color = current_params["sky_color"]
 
 	# Apply fog parameters
@@ -200,7 +200,6 @@ func set_weather_resource(resource: WeatherResource, transition_duration: float 
 	if world_environment and world_environment.environment:
 		var env := world_environment.environment
 		env.fog_enabled = resource.fog_enabled
-		# env.fog_color = resource.fog_color  # Works for standard fog in Godot 4
 	
 	# Handle particles
 	_remove_particles()

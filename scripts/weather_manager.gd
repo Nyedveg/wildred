@@ -93,10 +93,6 @@ func _ready():
 		
 	# Schedule next weather change
 	_schedule_next_weather()
-	
-	# Connect to day/night cycle signals if they exist
-	if daytime_cycle and daytime_cycle.has_signal("day_changed"):
-		daytime_cycle.connect("day_changed", _on_day_changed)
 
 func _process(delta):
 	if enable_auto_weather:
@@ -104,7 +100,7 @@ func _process(delta):
 		if Time.get_unix_time_from_system() >= next_weather_change:
 			_change_weather_by_schedule()
 	
-		debug_input_cooldown -= delta
+	debug_input_cooldown -= delta
 	if Input.is_action_pressed("Rain") and debug_input_cooldown <= 0:
 		# Disable auto weather while debugging
 		enable_auto_weather = false
@@ -213,23 +209,15 @@ func _change_to_weather_type(weather_name: String, transition_duration: float = 
 			weather_resource = snow_weather
 		"fog":
 			weather_resource = fog_weather
-	
+			
 	if weather_resource and weather_controller:
 		weather_controller.set_weather_resource(weather_resource, transition_duration)
 		current_weather_name = weather_name
 		
 		print("Weather changed to: ", weather_name)
 
-func _on_day_changed(day: int):
+func _on_daytime_cycle_day_changed(new_day: int) -> void:
 	# Optionally adjust weather probabilities based on new day
 	if seasonal_variations:
 		# Re-roll the weather at start of a new day
 		_change_weather_random()
-
-# Usage example:
-# var schedule = [
-#   {"weather_type": "clear", "duration": 300},
-#   {"weather_type": "rain", "duration": 600},
-#   {"weather_type": "storm", "duration": 300}
-# ]
-# weather_manager.set_weather_schedule(schedule)

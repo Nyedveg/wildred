@@ -17,7 +17,7 @@ var direction: Vector3 = Vector3.ZERO
 @export var slide_force = 2.0
 @export var slide_duration = 0.8
 @export var frictionFromSpeedCoefficient = 0.8
-@export var frictionBase = 2
+@export var frictionBase = 4
 @export var turn_speed = 5.0
 
 # Camera sensitivity
@@ -109,8 +109,8 @@ func _physics_process(delta: float) -> void:
 		slide_triggered = false
 
 	# Face movement direction (not while sliding)
-	if direction.length() > 0 and not sliding:
-		visuals.look_at(position + direction)
+	if direction.length() > 0 and not sliding && position + velocity != position:
+		visuals.look_at(Vector3(position.x + velocity.x, position.y + Vector3.ZERO.y, position.z + velocity.z))
 
 	# Speed setting
 	running = Input.is_action_pressed("sprint") and not crouching and not sliding

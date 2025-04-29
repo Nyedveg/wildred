@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_27cxd")
-clouds_cutoff = 0.3
+clouds_cutoff = 0.1
 clouds_weight = 0.0
-sky_color = Color(0.5, 0.7, 1, 1)
+sky_color = Color(0.803973, 0.860529, 0.912979, 1)
 sun_energy = 1.0
 moon_energy = 0.1
 fog_enabled = false
@@ -23,7 +23,7 @@ lightning_duration_max = 0.2
 lightning_brightness = 5.0
 thunder_delay_min = 0.5
 thunder_delay_max = 3.0
-transition_duration = 120.0
+transition_duration = 20.0
 ambient_audio_path = ""
 ambient_volume_db = -10.0
 metadata/_custom_type_script = "uid://i3njswdtp257"

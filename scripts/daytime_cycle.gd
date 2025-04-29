@@ -4,6 +4,9 @@ extends Node3D
 const HOURS_IN_DAY : float = 24.0
 const DAYS_IN_YEAR : int = 365
 
+signal day_changed(new_day: int)
+var _previous_day_of_year := day_of_year
+
 @export var sky_color : Color = Color(0.5, 0.7, 1.0) : # default blue-ish
 	set(value):
 		sky_color = value
@@ -63,14 +66,14 @@ const DAYS_IN_YEAR : int = 365
 	set( value ) :
 		time_scale = value
 ## If 0, the value will set from the sun object, but as the script runs in the editor, it may set the wrong value, so it is best to set it manually.
-@export_range( 0.0, 10.0, 0.01 ) var sun_base_enegry : float = 0.0 :
+@export_range( 0.0, 10.0, 0.01 ) var sun_base_energy : float = 0.0 :
 	set( value ) :
-		sun_base_enegry = value
+		sun_base_energy = value
 		_update_shader()
 ## If 0, the value will set from the moon object, but as the script runs in the editor, it may set the wrong value, so it is best to set it manually.
-@export_range( 0.0, 10.0, 0.01 ) var moon_base_enegry : float = 0.0 :
+@export_range( 0.0, 10.0, 0.01 ) var moon_base_energy : float = 0.0 :
 	set( value ) :
-		moon_base_enegry = value
+		moon_base_energy = value
 		_update_shader()
 
 @onready var environment : WorldEnvironment = $WorldEnvironment
@@ -82,19 +85,22 @@ func _ready() -> void :
 		sun.position = Vector3( 0.0, 0.0, 0.0 )
 		sun.rotation = Vector3( 0.0, 0.0, 0.0 )
 		sun.rotation_order = EULER_ORDER_ZXY
-		if sun_base_enegry == 0.0 :
-			sun_base_enegry = sun.light_energy
+		if sun_base_energy == 0.0 :
+			sun_base_energy = sun.light_energy
 	if is_instance_valid( moon ) :
 		moon.position = Vector3( 0.0, 0.0, 0.0 )
 		moon.rotation = Vector3( 0.0, 0.0, 0.0 )
 		moon.rotation_order = EULER_ORDER_ZXY
-		if moon_base_enegry == 0.0 :
-			moon_base_enegry = moon.light_energy
+		if moon_base_energy == 0.0 :
+			moon_base_energy = moon.light_energy
 	_update()
 
 func _process( delta: float ) -> void :
 	if not Engine.is_editor_hint() : # We don't want a time lapse in the editor
+		var old_day_of_year := day_of_year
 		day_time += delta * time_scale
+		if day_of_year != old_day_of_year:
+			emit_signal("day_changed", day_of_year)
 		RenderingServer.global_shader_parameter_set("day_time", day_time)
 
 func _update() -> void :
@@ -118,7 +124,7 @@ func _update_sun() -> void :
 		sun.rotation.z = deg_to_rad( latitude )
 		# Disabling light under the horizon
 		var sun_direction = sun.to_global( Vector3( 0.0, 0.0, 1.0 )).normalized()
-		sun.light_energy = smoothstep( -0.05, 0.1, sun_direction.y ) * sun_base_enegry
+		sun.light_energy = smoothstep( -0.05, 0.1, sun_direction.y ) * sun_base_energy
 		
 				# Adjust color temperature based on elevation
 		var t = clamp((sun_direction.y + 0.1) / 0.6, 0.0, 1.0)  # Smooth range for sunrise/sunset
@@ -139,7 +145,7 @@ func _update_moon() -> void :
 		moon.rotation.z = deg_to_rad( latitude )
 		# Disabling light under the horizon
 		var moon_direction = moon.to_global( Vector3( 0.0, 0.0, 1.0 )).normalized()
-		moon.light_energy = smoothstep( -0.05, 0.1, moon_direction.y ) * moon_base_enegry
+		moon.light_energy = smoothstep( -0.05, 0.1, moon_direction.y ) * moon_base_energy
 
 func _update_clouds() -> void :
 	if is_instance_valid( environment ) :
@@ -149,9 +155,7 @@ func _update_clouds() -> void :
 func _update_shader() -> void :
 	if is_instance_valid( environment ) :
 		environment.environment.sky.sky_material.set_shader_parameter(
-			"overwritten_time",
-			( day_of_year * HOURS_IN_DAY + day_time ) * 100.0 if use_day_time_for_shader else 0.0
-		)
+			"overwritten_time", (day_of_year * HOURS_IN_DAY + day_time ) * 100.0 if use_day_time_for_shader else 0.0)
 func _update_sky_color() -> void:
 	if is_instance_valid(environment):
 		environment.environment.sky.sky_material.set_shader_parameter("day_top_color", sky_color)

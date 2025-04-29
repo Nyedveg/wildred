@@ -43,7 +43,7 @@ shader_parameter/stars_texture = ExtResource("3_0oqq5")
 shader_parameter/stars_speed = 1.0
 shader_parameter/stars_scale = 1.0
 shader_parameter/stars_opacity = 0.3
-shader_parameter/overwritten_time = 3004.0
+shader_parameter/overwritten_time = 3007.0
 
 [sub_resource type="Sky" id="Sky_l4dqn"]
 sky_material = SubResource("ShaderMaterial_msgkm")
@@ -65,8 +65,8 @@ planet_axial_tilt = 12.19
 moon_orbital_period = 30.15
 use_day_time_for_shader = true
 time_scale = 0.02
-sun_base_enegry = 1.0
-moon_base_enegry = 0.1
+sun_base_energy = null
+moon_base_energy = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bh1jy")
@@ -109,3 +109,5 @@ snow_weather = ExtResource("9_8kj3w")
 fog_weather = ExtResource("10_3j3bh")
 weather_controller_path = NodePath("..")
 daytime_cycle_path = NodePath("../..")
+
+[connection signal="day_changed" from="." to="WeatherController/WeatherManager" method="_on_daytime_cycle_day_changed"]

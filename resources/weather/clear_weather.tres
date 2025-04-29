@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="WeatherResource" load_steps=2 format=3 uid="uid://b224mxtxnnmu6"]
+
+[ext_resource type="Script" uid="uid://i3njswdtp257" path="res://sky/weatherresource.gd" id="1_fkpok"]
+
+[resource]
+script = ExtResource("1_fkpok")
+clouds_cutoff = 0.3
+clouds_weight = 0.0
+sky_color = Color(0.5, 0.7, 1, 1)
+sun_energy = 1.0
+moon_energy = 0.1
+fog_enabled = false
+fog_density = 0.0
+fog_sky_affect = 0.0
+fog_color = Color(0.8, 0.8, 0.8, 1)
+particle_scene_path = ""
+particle_intensity = 1.0
+has_lightning = false
+lightning_frequency_min = 5.0
+lightning_frequency_max = 15.0
+lightning_duration_min = 0.05
+lightning_duration_max = 0.2
+lightning_brightness = 5.0
+thunder_delay_min = 0.5
+thunder_delay_max = 3.0
+transition_duration = 120.0
+ambient_audio_path = ""
+ambient_volume_db = -10.0
+metadata/_custom_type_script = "uid://i3njswdtp257"

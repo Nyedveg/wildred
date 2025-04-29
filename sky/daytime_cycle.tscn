@@ -1,20 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjjceeyq3csc3"]
+[gd_scene load_steps=8 format=3 uid="uid://bjjceeyq3csc3"]
 
 [ext_resource type="Script" uid="uid://b30iqmje4i1fe" path="res://sky/daytime_cycle.gd" id="1_ala5e"]
-[ext_resource type="Shader" uid="uid://dhjc1n7h107th" path="res://sky/sky.gdshader" id="2_ppure"]
+[ext_resource type="Shader" uid="uid://dhjc1n7h107th" path="res://shaders/sky.gdshader" id="2_ppure"]
 [ext_resource type="Texture2D" uid="uid://cgjduwllc3lvd" path="res://sky/stars.png" id="3_0oqq5"]
 [ext_resource type="Script" uid="uid://1ahg2xcxad6u" path="res://sky/weather_control.gd" id="4_62qw2"]
-[ext_resource type="PackedScene" uid="uid://cialpue55hqve" path="res://sky/rain/rain.tscn" id="5_op8gs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_msgkm"]
 shader = ExtResource("2_ppure")
-shader_parameter/day_top_color = Color(0.473562, 0.599887, 0.732021, 1)
+shader_parameter/day_top_color = Color(0.5, 0.7, 1, 1)
 shader_parameter/day_bottom_color = Color(0.673751, 0.754333, 0.879374, 1)
 shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
 shader_parameter/sunset_bottom_color = Color(0.982853, 0.577674, 7.70092e-07, 1)
 shader_parameter/night_top_color = Color(0.00297736, 2.10572e-08, 0.124046, 1)
 shader_parameter/night_bottom_color = Color(0, 0.0212807, 0.0732733, 1)
-shader_parameter/horizon_color = Color(0.570286, 0.637794, 0.66033, 1)
+shader_parameter/horizon_color = Color(0, 0, 0, 1)
 shader_parameter/horizon_blur = 1.0
 shader_parameter/sun_color = Color(10, 8, 1, 1)
 shader_parameter/sun_sunset_color = Color(10, 0.505882, 0, 1)
@@ -31,9 +30,9 @@ shader_parameter/clouds_speed = 1.0
 shader_parameter/clouds_direction = 0.2
 shader_parameter/clouds_scale = 1.0
 shader_parameter/clouds_cutoff = 0.3
-shader_parameter/clouds_fuzziness = 0.71
+shader_parameter/clouds_fuzziness = 0.4
 shader_parameter/clouds_weight = 0.0
-shader_parameter/clouds_blur = 0.25
+shader_parameter/clouds_blur = 0.15
 shader_parameter/stars_texture = ExtResource("3_0oqq5")
 shader_parameter/stars_speed = 1.0
 shader_parameter/stars_scale = 1.0
@@ -49,9 +48,10 @@ sky = SubResource("Sky_l4dqn")
 ambient_light_source = 3
 glow_enabled = true
 glow_blend_mode = 0
+fog_density = 1.0
 volumetric_fog_density = 0.01
 
-[node name="Daytime_Cycle" type="Node3D"]
+[node name="DaytimeCycle" type="Node3D"]
 script = ExtResource("1_ala5e")
 day_time = 5.4
 latitude = -50.0
@@ -83,12 +83,13 @@ shadow_opacity = 0.25
 shadow_blur = 5.0
 directional_shadow_fade_start = 0.1
 
-[node name="Weather_Control" type="Node3D" parent="."]
+[node name="WeatherController" type="Node3D" parent="."]
 script = ExtResource("4_62qw2")
-rain_particle_scene = ExtResource("5_op8gs")
 
-[node name="LightningFlashLight" type="DirectionalLight3D" parent="Weather_Control"]
+[node name="LightningFlashLight" type="DirectionalLight3D" parent="WeatherController"]
 transform = Transform3D(1, 0, 0, 0, 0.0581042, 0.998311, 0, -0.998311, 0.0581042, 0, 0, 0)
 visible = false
 light_energy = 5.0
 sky_mode = 1
+
+[node name="WeatherManager" type="Node3D" parent="WeatherController"]

@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	RenderingServer.global_shader_parameter_set("player_velocity", velocity)
 	
 	var on_floor = is_on_floor()
-	var input_dir := Input.get_vector("left", "right", "forward", "backward")
+	var input_dir := Input.get_vector("left", "right", "forward", "backward").normalized()
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	# Gravity
@@ -112,18 +112,19 @@ func _physics_process(delta: float) -> void:
 	if not sliding:
 		velocity.x += direction.x * speed * delta
 		velocity.z += direction.z * speed * delta
-
+	visuals.scale = Vector3(1, 1, 1)
 	# Wallrunning logic
 	wallrunning = false
-	if $RayCastRight.is_colliding():
+	if $RayCastRight.is_colliding() and direction.length() > 0 and velocity.distance_to(Vector3(0, velocity.y, 0)) > 4 and not on_floor:
 		wallrunning = true
 		can_double_jump = true
 		velocity += transform.basis.x * 3 * delta
 		velocity.y += 6 * delta
+		visuals.scale = Vector3(-1, 1, 1)  # Flip horizontally (left wall)
 		if Input.is_action_just_pressed("ui_accept"):
 			velocity += transform.basis.x * -8
 			velocity.y = 2
-	elif $RayCastLeft.is_colliding():
+	elif $RayCastLeft.is_colliding() and direction.length() > 0 and velocity.distance_to(Vector3(0, velocity.y, 0)) > 4 and not on_floor:
 		wallrunning = true
 		can_double_jump = true
 		velocity += transform.basis.x * -3 * delta
@@ -131,16 +132,20 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_accept"):
 			velocity += transform.basis.x * 8
 			velocity.y = 2
-
+	
 	# Climbing logic
 	climbing = $RayCastClimb.is_colliding() and not $RayCastClimb2.is_colliding()
 	if climbing:
 		velocity.y = 6
-
+	var frictionFactorK
+	if (velocity.distance_to(Vector3(0, velocity.y, 0))) == 0:
+		frictionFactorK = 2
+	else:
+		frictionFactorK = frictionBase / (velocity.distance_to(Vector3(0, velocity.y, 0)))
 	# Friction
 	if not sliding:
-		velocity.x = move_toward(velocity.x, 0, (abs(velocity.x * frictionFromSpeedCoefficient) + frictionBase) * delta)
-		velocity.z = move_toward(velocity.z, 0, (abs(velocity.z * frictionFromSpeedCoefficient) + frictionBase) * delta)
+		velocity.x = move_toward(velocity.x, 0, (abs(velocity.x * frictionFromSpeedCoefficient) + abs((frictionFactorK * velocity).x)) * delta)
+		velocity.z = move_toward(velocity.z, 0, (abs(velocity.z * frictionFromSpeedCoefficient) + abs((frictionFactorK * velocity).z)) * delta)
 
 	# Animation update
 	update_animation(direction, on_floor)
@@ -161,7 +166,7 @@ func update_animation(direction: Vector3, on_floor: bool):
 			play_anim("crouch_walk")
 		else:
 			play_anim("crouch_idle_001")
-	elif direction.length() > 0:
+	elif velocity.length() > 0:
 		play_anim("running") if running else play_anim("walking")
 	else:
 		play_anim("idle")

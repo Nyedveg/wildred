@@ -1,0 +1,126 @@
+[gd_scene load_steps=16 format=3 uid="uid://bcfqqity88im2"]
+
+[ext_resource type="PackedScene" uid="uid://dq4l2hst6kwqi" path="res://test_scene_resources/models/forest_loner_-_3_simple_props.glb" id="1_44863"]
+[ext_resource type="Texture2D" uid="uid://foua2csmmuvv" path="res://textures/smoke_08.png" id="2_6wul4"]
+[ext_resource type="Gradient" uid="uid://daxn4fe4fpc0x" path="res://resources/gradients/Flame.tres" id="2_d2lef"]
+[ext_resource type="Texture2D" uid="uid://bujncawcd6xfy" path="res://textures/Flame-spritesheet.png" id="3_6wul4"]
+
+[sub_resource type="Gradient" id="Gradient_t70d4"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pqi8d"]
+gradient = SubResource("Gradient_t70d4")
+
+[sub_resource type="Curve" id="Curve_pqi8d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.241477, 0.527933), 0.0, 0.0, 0, 0, Vector2(0.984055, 0.50519), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pfee8"]
+curve = SubResource("Curve_pqi8d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pfee8"]
+emission_shape = 1
+emission_sphere_radius = 0.4
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+angular_velocity_min = 40.0
+angular_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_pfee8")
+color = Color(0.74978, 0.74978, 0.74978, 1)
+color_ramp = SubResource("GradientTexture1D_pqi8d")
+hue_variation_min = -0.01
+hue_variation_max = 0.00999998
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_offset_max = 1.0
+collision_mode = 1
+collision_friction = 0.6
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qro0y"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_6wul4")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xoumb"]
+material = SubResource("StandardMaterial3D_qro0y")
+size = Vector2(3, 3)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t70d4"]
+gradient = ExtResource("2_d2lef")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n4l4b"]
+emission_shape = 1
+emission_sphere_radius = 0.4
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+angular_velocity_min = 40.0
+angular_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_pfee8")
+color_ramp = SubResource("GradientTexture1D_t70d4")
+hue_variation_min = -0.01
+hue_variation_max = 0.00999998
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_offset_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yumcb"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_6wul4")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_6wul4"]
+material = SubResource("StandardMaterial3D_yumcb")
+
+[node name="Campfire" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_44863")]
+
+[node name="FireEffect" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05238, 0.074385, -0.53236)
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="FireEffect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.622807, 0)
+visible = false
+amount = 30
+lifetime = 5.0
+randomness = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_pfee8")
+draw_pass_1 = SubResource("QuadMesh_xoumb")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="FireEffect"]
+amount = 40
+randomness = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_n4l4b")
+draw_pass_1 = SubResource("QuadMesh_6wul4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="FireEffect"]
+light_color = Color(1, 0.556863, 0.364706, 1)
+shadow_enabled = true

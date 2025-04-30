@@ -5,17 +5,17 @@
 [resource]
 script = ExtResource("1_72oj5")
 clouds_cutoff = 0.0
-clouds_weight = 0.7
-sky_color = Color(0.449853, 0.474733, 0.448982, 1)
+clouds_weight = 1.0
+sky_color = Color(0.283591, 0.302269, 0.282948, 1)
 sun_energy = 0.2
 moon_energy = 0.05
 fog_enabled = true
-fog_density = 1.0
-fog_sky_affect = 1.0
+fog_density = 0.1
+fog_sky_affect = 0.6
 fog_color = Color(0.8, 0.8, 0.8, 1)
 particle_scene_path = ""
 particle_intensity = 1.0
-has_lightning = false
+has_lightning = true
 lightning_frequency_min = 5.0
 lightning_frequency_max = 15.0
 lightning_duration_min = 0.05

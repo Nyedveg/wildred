@@ -43,7 +43,7 @@ shader_parameter/stars_texture = ExtResource("3_0oqq5")
 shader_parameter/stars_speed = 1.0
 shader_parameter/stars_scale = 1.0
 shader_parameter/stars_opacity = 0.3
-shader_parameter/overwritten_time = 3007.0
+shader_parameter/overwritten_time = 3771.0
 
 [sub_resource type="Sky" id="Sky_l4dqn"]
 sky_material = SubResource("ShaderMaterial_msgkm")
@@ -96,9 +96,9 @@ script = ExtResource("4_62qw2")
 transform = Transform3D(1, 0, 0, 0, 0.0581042, 0.998311, 0, -0.998311, 0.0581042, 0, 0, 0)
 visible = false
 light_energy = 20.0
-light_indirect_energy = 9.154
-light_bake_mode = 1
-sky_mode = 1
+light_indirect_energy = 5.0
+shadow_enabled = true
+directional_shadow_mode = 0
 
 [node name="WeatherManager" type="Node" parent="WeatherController"]
 script = ExtResource("5_op8gs")

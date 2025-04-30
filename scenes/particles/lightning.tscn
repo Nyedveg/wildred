@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcaecr38rf81w"]
+
+[ext_resource type="ArrayMesh" uid="uid://dy77886kp4u7k" path="res://resources/meshes/lightning_editable.tres" id="1_2hrdq"]
+
+[sub_resource type="Gradient" id="Gradient_dcnan"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pkuik"]
+gradient = SubResource("Gradient_dcnan")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_434qh"]
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 0, 4)
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 7.0
+color_ramp = SubResource("GradientTexture1D_pkuik")
+
+[node name="Lightning" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 1
+lifetime = 0.3
+randomness = 1.0
+visibility_aabb = AABB(-4, 0, -4, 8, 60, 8)
+process_material = SubResource("ParticleProcessMaterial_434qh")
+draw_pass_1 = ExtResource("1_2hrdq")

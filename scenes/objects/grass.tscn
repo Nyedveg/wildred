@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://curs3xuvyjc8w"]
 
-[ext_resource type="ArrayMesh" uid="uid://r2imjo7o2734" path="res://resources/array_meshes/grass.res" id="1_6ms0a"]
+[ext_resource type="ArrayMesh" uid="uid://r2imjo7o2734" path="res://resources/meshes/grass.res" id="1_6ms0a"]
 
 [sub_resource type="MultiMesh" id="MultiMesh_6ms0a"]
 transform_format = 1

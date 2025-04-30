@@ -4,11 +4,11 @@
 
 [resource]
 script = ExtResource("1_fkpok")
-clouds_cutoff = 0.8
-clouds_weight = 0.2
+clouds_cutoff = 0.2
+clouds_weight = 0.0
 sky_color = Color(0.737663, 0.84284, 1, 1)
-sun_energy = 0.8
-moon_energy = 0.05
+sun_energy = 1.0
+moon_energy = 0.1
 fog_enabled = false
 fog_density = 0.0
 fog_sky_affect = 0.0

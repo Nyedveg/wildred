@@ -3,7 +3,6 @@ extends CharacterBody3D
 @onready var camera_mount: Node3D = $camera_mount
 @onready var animation_player: AnimationPlayer = $visuals/wildred_mc/AnimationPlayer
 @onready var visuals: Node3D = $visuals
-@onready var dust_particles: GPUParticles3D = $SlideDust
 
 var speed = 3.0
 var anim_state: String = ""
@@ -102,9 +101,6 @@ func _physics_process(delta: float) -> void:
 		var preserved_momentum = flat_velocity.normalized() * clamp(flat_velocity.length(), 3.0, 10.0)
 		velocity = preserved_momentum * (slide_force * 0.6)
 
-		if dust_particles:
-			dust_particles.restart()
-
 	if not Input.is_action_pressed("crouch"):
 		slide_triggered = false
 
@@ -187,5 +183,3 @@ func play_anim(new_anim: String):
 func _on_slide_timer_timeout() -> void:
 	sliding = false
 	readyToSlide = true
-	if dust_particles:
-		dust_particles.emitting = false

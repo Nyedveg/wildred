@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4nbcgh8d0ip3"]
+
+[ext_resource type="PackedScene" uid="uid://3on3ipjl6urg" path="res://models/stylized_tree.glb" id="1_cikwv"]
+[ext_resource type="Material" uid="uid://dy0yp7hu36ij7" path="res://resources/shader_materials/leaves_summer.tres" id="2_6p4gt"]
+
+[node name="tree1_leaf" instance=ExtResource("1_cikwv")]
+
+[node name="oak 01_leafes_Mat_001_0" parent="Sketchfab_model/e4a9b945b60a47099b7ed8ca539f430a_fbx/RootNode/oak 01" index="0"]
+surface_material_override/0 = ExtResource("2_6p4gt")
+
+[node name="oak 01_leafes_Mat_001_02" parent="Sketchfab_model/e4a9b945b60a47099b7ed8ca539f430a_fbx/RootNode/oak 01" index="1"]
+surface_material_override/0 = ExtResource("2_6p4gt")

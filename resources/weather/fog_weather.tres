@@ -4,14 +4,14 @@
 
 [resource]
 script = ExtResource("1_xmoeu")
-clouds_cutoff = 0.3
+clouds_cutoff = 0.2
 clouds_weight = 0.0
-sky_color = Color(0.5, 0.7, 1, 1)
+sky_color = Color(0.876332, 0.925912, 1, 1)
 sun_energy = 1.0
 moon_energy = 0.1
-fog_enabled = false
-fog_density = 0.0
-fog_sky_affect = 0.0
+fog_enabled = true
+fog_density = 0.6
+fog_sky_affect = 0.6
 fog_color = Color(0.8, 0.8, 0.8, 1)
 particle_scene_path = ""
 particle_intensity = 1.0

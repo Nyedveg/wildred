@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://tkt7uhsvsuxx"]
+
+[ext_resource type="Shader" uid="uid://5uogs8ppxxtq" path="res://shaders/foliage_grass.gdshader" id="1_rkvdf"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b3bil"]
+width = 1024
+height = 1024
+seamless = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rkvdf")
+shader_parameter/color = Color(0.364714, 0.516261, 0.20828, 1)
+shader_parameter/color2 = Color(0.605962, 0.922991, 0, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_b3bil")
+shader_parameter/noiseScale = 20.0
+shader_parameter/swayStrength = 0.1
+shader_parameter/swaySpeed = 1.0
+shader_parameter/interact_radius = 1.5
+shader_parameter/velocity_threshold = 0.2
+shader_parameter/spring_strength = 0.05
+shader_parameter/blend_ease_power = 2.0

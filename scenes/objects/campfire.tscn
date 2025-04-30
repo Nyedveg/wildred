@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://bcfqqity88im2"]
 
-[ext_resource type="PackedScene" uid="uid://dq4l2hst6kwqi" path="res://test_scene_resources/models/forest_loner_-_3_simple_props.glb" id="1_44863"]
+[ext_resource type="PackedScene" uid="uid://dq4l2hst6kwqi" path="res://models/forest_loner_-_3_simple_props.glb" id="1_44863"]
 [ext_resource type="Texture2D" uid="uid://foua2csmmuvv" path="res://textures/smoke_08.png" id="2_6wul4"]
 [ext_resource type="Gradient" uid="uid://daxn4fe4fpc0x" path="res://resources/gradients/Flame.tres" id="2_d2lef"]
 [ext_resource type="Texture2D" uid="uid://bujncawcd6xfy" path="res://textures/Flame-spritesheet.png" id="3_6wul4"]

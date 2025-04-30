@@ -67,7 +67,7 @@ func _find_player() -> void:
 
 func _update_particle_position() -> void:
 	if active_particles and player_node:
-		active_particles.global_position = player_node.global_position
+		active_particles.global_position = player_node.global_position + Vector3(0, 5, 0)
 
 func _update_weather_parameters(delta: float) -> void:
 	# Interpolate all parameters

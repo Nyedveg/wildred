@@ -65,8 +65,8 @@ planet_axial_tilt = 12.19
 moon_orbital_period = 30.15
 use_day_time_for_shader = true
 time_scale = 0.02
-sun_base_energy = null
-moon_base_energy = null
+sun_base_energy = 0.82569
+moon_base_energy = 0.1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bh1jy")
@@ -75,7 +75,7 @@ environment = SubResource("Environment_bh1jy")
 transform = Transform3D(0.604078, 0.756613, -0.250254, -0.770272, 0.634874, 0.0601404, 0.204383, 0.156434, 0.96631, 0, 0, 0)
 rotation_order = 4
 light_color = Color(1, 0.63345, 0.413521, 1)
-light_energy = 0.82569
+light_energy = 0.681764
 shadow_enabled = true
 shadow_opacity = 0.75
 shadow_blur = 5.0

@@ -11,8 +11,8 @@ seamless = true
 [resource]
 render_priority = 0
 shader = ExtResource("1_tncfq")
-shader_parameter/color = Color(0.364714, 0.516261, 0.20828, 1)
-shader_parameter/color2 = Color(0.605962, 0.922991, 0, 1)
+shader_parameter/color = Color(0.31748, 0.804007, 0, 1)
+shader_parameter/color2 = Color(0.245606, 0.63787, 0, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_b3bil")
 shader_parameter/noiseScale = 20.0
 shader_parameter/leaf_texture = ExtResource("2_u2af7")

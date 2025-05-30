@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://e5xx5yecfnj"]
+
+[ext_resource type="Script" uid="uid://qb270htfvaku" path="res://scripts/interactable.gd" id="1_2j76o"]
+[ext_resource type="Script" uid="uid://0tre8g13a3mh" path="res://scripts/explosive_interactable.gd" id="1_tstt3"]
+[ext_resource type="ArrayMesh" uid="uid://ceq18j6qdba0l" path="res://resources/meshes/barrel_explosive.tres" id="2_2j76o"]
+[ext_resource type="PackedScene" uid="uid://bkrcuvhpquhn7" path="res://scenes/particles/explosion_large.tscn" id="2_p4yxs"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bdhqf"]
+height = 1.11304
+radius = 0.520996
+
+[node name="Barrel_explosive" type="Node3D" groups=["explosive"]]
+script = ExtResource("1_tstt3")
+explosion_scene = ExtResource("2_p4yxs")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+collision_mask = 7
+mass = 20.0
+script = ExtResource("1_2j76o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = ExtResource("2_2j76o")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("CylinderShape3D_bdhqf")

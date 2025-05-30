@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://cntw1n2s45qx3"]
 
-[ext_resource type="Texture2D" uid="uid://w354jmehjiyn" path="res://textures/Lightning_texture.png" id="1_yagye"]
+[ext_resource type="Texture2D" uid="uid://w354jmehjiyn" path="res://textures/lightning/Lightning_texture.png" id="1_yagye"]
 
 [sub_resource type="Gradient" id="Gradient_j27t5"]
 offsets = PackedFloat32Array(0.0483461, 0.386768, 1)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://w7bxkx6acim1"]
 
 [ext_resource type="Script" uid="uid://qb270htfvaku" path="res://scripts/interactable.gd" id="1_bdhqf"]
-[ext_resource type="ArrayMesh" uid="uid://dq20g047r7s05" path="res://resources/meshes/barrel_editable.tres" id="2_bdhqf"]
+[ext_resource type="ArrayMesh" uid="uid://dq20g047r7s05" path="res://resources/meshes/barrel_normal.tres" id="2_bdhqf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bdhqf"]
 height = 1.11304

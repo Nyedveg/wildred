@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://dswbab7jluih3"]
 
-[ext_resource type="Texture2D" uid="uid://b1bdfh6ltq786" path="res://textures/Lightning_wave_texture.png" id="1_3ohu3"]
+[ext_resource type="Texture2D" uid="uid://b1bdfh6ltq786" path="res://textures/lightning/Lightning_wave_texture.png" id="1_3ohu3"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_jugmb"]
 expanded_output_ports = [0]

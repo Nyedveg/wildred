@@ -121,7 +121,7 @@ func _physics_process(delta: float) -> void:
 		slide_triggered = false
 
 	# Face movement direction (not while sliding)
-	if direction.length() > 0 and not sliding && position + velocity != position:
+	if direction.length() > 0 and not sliding and not velocity == Vector3(0, 0, 0):
 		visuals.look_at(Vector3(position.x + velocity.x, position.y + Vector3.ZERO.y, position.z + velocity.z))
 
 	# Speed setting

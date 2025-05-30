@@ -225,7 +225,6 @@ func _spawn_particles(particle_scene: PackedScene):
 		
 	if particle_scene:
 		active_particles = particle_scene.instantiate()
-		active_particles.scale = Vector3.ZERO  # Start small for fade-in
 		
 		# Adjust emission rate based on intensity if the particles have an "amount" property
 		if current_resource and active_particles.has_method("set_amount"):

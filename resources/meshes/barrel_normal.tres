@@ -12,6 +12,7 @@ shader_parameter/outline_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iephj"]
 next_pass = SubResource("ShaderMaterial_e7wei")
+specular_mode = 1
 albedo_color = Color(0.473976, 0.473976, 0.473976, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yyqqm"]
@@ -24,6 +25,7 @@ shader_parameter/outline_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdhqf"]
 next_pass = SubResource("ShaderMaterial_yyqqm")
+specular_mode = 1
 albedo_color = Color(0.72032, 0.510296, 0.222239, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0htu"]
@@ -36,6 +38,7 @@ shader_parameter/outline_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rowl3"]
 next_pass = SubResource("ShaderMaterial_k0htu")
+specular_mode = 1
 albedo_color = Color(0.425887, 0.291324, 0.106438, 1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nkfux"]

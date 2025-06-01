@@ -5,7 +5,6 @@ const HOURS_IN_DAY : float = 24.0
 const DAYS_IN_YEAR : int = 365
 
 signal day_changed(new_day: int)
-var _previous_day_of_year := day_of_year
 
 @export var sky_color : Color = Color(0.5, 0.7, 1.0) : # default blue-ish
 	set(value):
@@ -156,6 +155,7 @@ func _update_shader() -> void :
 	if is_instance_valid( environment ) :
 		environment.environment.sky.sky_material.set_shader_parameter(
 			"overwritten_time", (day_of_year * HOURS_IN_DAY + day_time ) * 100.0 if use_day_time_for_shader else 0.0)
+
 func _update_sky_color() -> void:
 	if is_instance_valid(environment):
 		environment.environment.sky.sky_material.set_shader_parameter("day_top_color", sky_color)

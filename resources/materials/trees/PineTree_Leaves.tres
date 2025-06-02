@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://blr46iqbgt188"]
+
+[resource]
+resource_name = "PineTree_Leaves"
+transparency = 4
+cull_mode = 2
+roughness = 0.0

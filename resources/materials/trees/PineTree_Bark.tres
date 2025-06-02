@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://1fda2kil6hye"]
+
+[resource]
+resource_name = "PineTree_Bark"
+cull_mode = 2

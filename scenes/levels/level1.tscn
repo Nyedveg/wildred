@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnvjspnflyxh"]
+[gd_scene load_steps=7 format=3 uid="uid://bnvjspnflyxh"]
 
 [ext_resource type="PackedScene" uid="uid://lvl0jvu6h5j" path="res://scenes/objects/player.tscn" id="1_dd0lh"]
 [ext_resource type="Material" uid="uid://xhnl4bmbbajh" path="res://resources/shader_materials/water_mat.tres" id="2_bfxgj"]
 [ext_resource type="PackedScene" uid="uid://bjjceeyq3csc3" path="res://scenes/objects/daytime_cycle.tscn" id="3_dywbp"]
+[ext_resource type="PackedScene" uid="uid://dffaqvr7m7y0y" path="res://scenes/objects/sleeping_dragon.tscn" id="4_bfxgj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1seuy"]
 material = ExtResource("2_bfxgj")
-size = Vector2(1000, 1000)
+size = Vector2(10000, 100000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dd0lh"]
+albedo_color = Color(0.972882, 0.0814414, 0.0520349, 1)
 
 [node name="Level1" type="Node3D"]
 
@@ -40,131 +44,877 @@ target_position = Vector3(-0.5, 0, 0)
 [node name="Environment" type="Node" parent="."]
 
 [node name="water" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.205931, 0)
 mesh = SubResource("PlaneMesh_1seuy")
 skeleton = NodePath("")
 
 [node name="Daytime_Cycle" parent="Environment" instance=ExtResource("3_dywbp")]
 day_time = 13.71
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="Environment"]
+[node name="Level_geometry" type="Node" parent="Environment"]
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(-0.836889, 0, 0.547373, -0.0109762, 0.999799, -0.0167817, -0.547263, -0.0200525, -0.83672, 33.846, -0.835535, -18.9722)
 use_collision = true
 collision_mask = 7
 size = Vector3(23.1321, 27.7476, 12.6421)
 
-[node name="CSGBox3D14" type="CSGBox3D" parent="Environment"]
+[node name="CSGBox3D33" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.94389, -0.00275762, -0.33025, 0.0026029, 0.999996, -0.000910707, 0.330252, 0, 0.943894, 60.4279, 1.64873, 1.10601)
+use_collision = true
+collision_mask = 7
+size = Vector3(27.1384, 19.5522, 22.3701)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(0.924666, 0, -0.38078, 0, 1, 0, 0.38078, 0, 0.924666, 43.5583, -0.449134, -5.10639)
 use_collision = true
 collision_mask = 7
 size = Vector3(10.722, 16.1437, 22.2031)
 
-[node name="CSGBox3D12" type="CSGBox3D" parent="Environment"]
+[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(0.836305, 0, -0.548264, 0, 1, 0, 0.548264, 0, 0.836305, 38.1376, -1.07554, -6.74362)
 use_collision = true
 collision_mask = 7
 size = Vector3(43.07, 1, 22.2031)
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Environment"]
+[node name="CSGBox3D28" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.68691, 0, 0.726741, 0, 1, 0, -0.726741, 0, 0.68691, -25.2466, -1.06515, 14.6239)
+use_collision = true
+collision_mask = 7
+size = Vector3(43.07, 1, 22.2031)
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.836219, 0, -0.548379, 0, 1, 0, 0.548379, 0, 0.836219, 92.2366, -1.29096, 20.5384)
+use_collision = true
+collision_mask = 7
+size = Vector3(54.2683, 1, 24.8184)
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.525408, 0, -0.850845, 0, 1, 0, 0.850845, 0, 0.525408, 33.1897, -1.05546, 49.1638)
+use_collision = true
+collision_mask = 7
+size = Vector3(75.4776, 1, 72.0978)
+
+[node name="CSGBox3D60" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.447884, 0, -0.894082, 0, 1, 0, 0.894082, 0, -0.447884, 46.7296, -1.04394, 95.1264)
+use_collision = true
+collision_mask = 7
+size = Vector3(123.955, 1, 132.666)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.873328, 0, 0.487128, 0, 1, 0, -0.487128, 0, -0.873328, -9.15196, -1.06433, 28.6391)
+use_collision = true
+collision_mask = 7
+size = Vector3(43.07, 1, 45.0867)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(0.972504, 0, 0.232885, 0, 1, 0, -0.232885, 0, 0.972504, 5.10312, -1.06597, -2.81631)
 use_collision = true
 collision_mask = 7
 size = Vector3(43.07, 1, 22.2031)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(-0.71292, 0, 0.701245, 0, 1, 0, -0.701245, 0, -0.71292, 15.4388, 13.816, 14.4439)
+[node name="CSGBox3D24" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.917442, -0.00681984, 0.397818, -0.00797051, 0.999961, -0.00123416, -0.397799, -0.00430288, -0.917464, -17.6473, 4.05189, 18.8688)
 use_collision = true
 collision_mask = 7
-size = Vector3(23.1321, 27.7476, 12.6421)
+size = Vector3(22.288, 14.4107, 24.1339)
 
-[node name="CSGBox3D13" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(0.55639, -0.0416489, 0.829876, 0.136983, 0.989675, -0.0421712, -0.819552, 0.137142, 0.556351, 32.1859, 22.2913, -16.6572)
+[node name="CSGBox3D23" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.951355, -0.16819, -0.258146, 0.16366, 0.985738, -0.0390981, 0.261043, -0.00505196, 0.965315, -28.9862, 16.1234, 28.8451)
 use_collision = true
 collision_mask = 7
-size = Vector3(9.29492, 28.8838, 20.0384)
+size = Vector3(12.482, 48.5756, 6.40612)
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(0.553008, 0.135018, 0.822163, -0.21683, 0.976102, -0.0144532, -0.804467, -0.170277, 0.569068, 30.2113, 23.3213, -4.66701)
+[node name="CSGBox3D22" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.967374, 0.0432487, 0.249639, 0.0194932, 0.995107, -0.0968596, -0.252607, -0.0888329, -0.963483, -9.38297, 26.0188, 29.8279)
 use_collision = true
 collision_mask = 7
-size = Vector3(9.29492, 28.8838, 21.8337)
+size = Vector3(23.1321, 35.2189, 7.46356)
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(0.592503, 0.0281908, 0.805075, -0.112591, 0.992476, 0.0481099, -0.797661, -0.11915, 0.591219, 30.9257, 14.0969, -6.51556)
+[node name="CSGBox3D30" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.932567, 0.0136139, 0.360745, 0.0592403, 0.991514, 0.115724, -0.356109, 0.129292, -0.925458, -29.759, 76.053, 69.7745)
 use_collision = true
 collision_mask = 7
-size = Vector3(6.19702, 13.3848, 21.8337)
+size = Vector3(35.2355, 168.504, 36.0763)
 
-[node name="CSGBox3D17" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(0.406274, 0, 0.913751, -0.140264, 0.988148, 0.0623644, -0.902922, -0.153503, 0.401459, 44.4985, 3.05228, 5.56565)
+[node name="CSGBox3D38" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.413901, 0.0101632, 0.910267, 0.00787478, 0.999941, -0.00758384, -0.91029, 0.00402933, -0.413956, -9.66455, 32.2781, 70.5736)
 use_collision = true
 collision_mask = 7
-size = Vector3(4.8356, 38.7893, 22.0504)
+size = Vector3(23.1321, 71.7307, 32.0774)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment"]
+[node name="CSGBox3D29" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.716518, 0.013624, -0.697437, 0.0132699, 0.999895, 0.00589925, 0.697444, -0.00502785, -0.716623, 0.434445, 23.5741, 47.1815)
+use_collision = true
+collision_mask = 7
+size = Vector3(23.526, 66.0521, 12.6421)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.898789, 0.0583147, -0.434486, -0.0124679, 0.994112, 0.107634, 0.438205, -0.0913227, 0.894225, 5.19625, 19.9373, 33.8781)
+use_collision = true
+collision_mask = 7
+size = Vector3(23.1321, 50.2944, 12.6421)
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.835827, 0, -0.548994, 0, 1, 0, 0.548994, 0, 0.835827, 59.1128, 14.3003, 32.8436)
+use_collision = true
+collision_mask = 7
+size = Vector3(28.5934, 38.3486, 12.6421)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.98737, 0, -0.158434, 0, 1, 0, 0.158434, 0, 0.98737, 35.9142, 18.0984, 23.3195)
+use_collision = true
+collision_mask = 7
+size = Vector3(27.8919, 38.3486, 11.7739)
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.973866, 0.111564, -0.197836, -0.0536703, 0.959416, 0.27684, 0.220693, -0.258988, 0.940331, 29.4949, 53.3891, 16.9642)
+use_collision = true
+collision_mask = 7
+size = Vector3(21.084, 36.9453, 7.92749)
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.732508, 0.167965, -0.659712, -0.0159878, 0.973061, 0.229994, 0.680571, -0.157925, 0.71546, 17.7406, 53.0656, 13.4163)
+use_collision = true
+collision_mask = 7
+size = Vector3(11.0511, 40.5108, 10.0442)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.71292, 0, 0.701245, 0, 1, 0, -0.701245, 0, -0.71292, 15.4388, 18.616, 14.4439)
+use_collision = true
+collision_mask = 7
+size = Vector3(23.1321, 37.3476, 12.6421)
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.150462, -0.417169, 0.896286, 0.968974, 0.242048, -0.0500047, -0.196084, 0.876003, 0.440646, 25.7853, 61.2706, 3.16697)
+use_collision = true
+collision_mask = 7
+size = Vector3(9.29492, 21.0239, 16.1075)
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.315478, -0.113797, 0.942085, 0.248812, 0.967968, 0.0336033, -0.915732, 0.223801, 0.333687, 30.7572, 49.3684, -7.63108)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.9507, 28.8838, 14.028)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.55639, -0.0416489, 0.829876, 0.136983, 0.989675, -0.0421712, -0.819552, 0.137142, 0.556351, 32.6789, 22.4127, -17.3833)
+use_collision = true
+collision_mask = 7
+size = Vector3(11.0669, 28.8838, 20.0384)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.553008, 0.135018, 0.822163, -0.21683, 0.976102, -0.0144532, -0.804467, -0.170277, 0.569068, 29.9568, 23.4055, -4.38637)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.0645, 28.8838, 21.9352)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.592503, 0.0281908, 0.805075, -0.112591, 0.992476, 0.0481099, -0.797661, -0.11915, 0.591219, 31.0885, 19.8271, -7.20349)
+use_collision = true
+collision_mask = 7
+size = Vector3(6.19702, 24.9321, 21.8337)
+
+[node name="CSGBox3D44" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.828461, 0.00943155, 0.559968, 0.012862, 0.999274, -0.0358598, -0.5599, 0.0369107, 0.827738, 88.2353, 7.61348, 27.0213)
+use_collision = true
+collision_mask = 7
+size = Vector3(6.21111, 51.888, 22.0504)
+
+[node name="CSGBox3D42" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.383563, -0.00536784, 0.923499, -0.0655799, 0.9973, 0.0330345, -0.921184, -0.0732337, 0.382175, 73.6547, 6.73351, 16.2298)
+use_collision = true
+collision_mask = 7
+size = Vector3(7.51949, 50.5208, 22.0504)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.406274, 0, 0.913751, -0.140264, 0.988148, 0.0623644, -0.902922, -0.153503, 0.401459, 53.8872, 9.41123, 10.5093)
+use_collision = true
+collision_mask = 7
+size = Vector3(2.77522, 51.3673, 22.0504)
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.544449, 0, -0.838795, 0, 1, 0, 0.838795, 0, -0.544449, 75.6924, -2.52065, 35.1153)
+use_collision = true
+collision_mask = 7
+size = Vector3(26.3916, 28.0149, 13.7223)
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.88056, 0, -0.473935, 0, 1, 0, 0.473935, 0, 0.88056, 66.1692, -2.36148, 22.734)
+use_collision = true
+collision_mask = 7
+size = Vector3(37.1717, 27.5255, 13.7223)
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.96968, 0, 0.244377, 0, 1, 0, -0.244377, 0, -0.96968, 38.3868, -2.46858, 11.2426)
+use_collision = true
+collision_mask = 7
+size = Vector3(26.0182, 27.7476, 13.7223)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(0.590662, 0, 0.806919, 0, 1, 0, -0.806919, 0, 0.590662, 25.3055, -1.23429, 1.80607)
 use_collision = true
 collision_mask = 7
 size = Vector3(26.0182, 27.7476, 22.0504)
 
-[node name="CSGBox3D18" type="CSGBox3D" parent="Environment"]
+[node name="CSGBox3D46" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.733306, 0.679719, 0.0157488, -0.0293794, -0.00853711, -0.999533, -0.679266, -0.733425, 0.0262305, 76.4549, 10.4397, 11.1712)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 9.57303, 3.56126)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(0.26212, -0.0625056, -0.96301, 0.0629653, 0.996883, -0.0475659, 0.96298, -0.0481682, 0.265238, 56.9999, 2.87418, -23.3628)
 use_collision = true
 collision_mask = 7
 size = Vector3(3.19324, 9.57303, 3.56126)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Environment"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(-0.794393, 0.0400451, 0.606084, -0.0389277, 0.992417, -0.116593, -0.606156, -0.116214, -0.78681, 10.9459, 3.06194, -25.03)
 use_collision = true
 collision_mask = 7
 size = Vector3(3.19324, 9.57303, 3.56126)
 
-[node name="CSGBox3D16" type="CSGBox3D" parent="Environment"]
+[node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(-0.444401, -0.0328946, 0.895224, -0.211812, 0.974848, -0.069326, -0.870428, -0.220428, -0.440191, 38.6784, 5.75136, -33.7469)
 use_collision = true
 collision_mask = 7
 size = Vector3(3.19324, 32.1328, 5.27477)
 
-[node name="CSGBox3D15" type="CSGBox3D" parent="Environment"]
+[node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(-0.52105, -0.119723, -0.845088, -0.0389277, 0.992417, -0.116593, 0.852638, -0.0278536, -0.521759, -36.3765, 6.44986, -11.6397)
 use_collision = true
 collision_mask = 7
 size = Vector3(3.19324, 19.3231, 3.56126)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment"]
+[node name="CSGBox3D26" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.331447, -0.383225, 0.862139, 0.0653457, 0.920921, 0.384232, -0.941209, -0.0710153, 0.330278, -46.2817, 0.997337, -0.226011)
+use_collision = true
+collision_mask = 7
+size = Vector3(1.72015, 7.04401, 1.84216)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.812355, -0.0993752, -0.574634, -0.0389277, 0.992417, -0.116593, 0.581863, -0.072346, -0.810063, -40.3042, 2.21146, 17.7364)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 12.7714, 3.56126)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(-0.302237, 0, 0.953233, -0.0993752, 0.994551, -0.0315084, -0.948039, -0.104251, -0.30059, -15.442, 1.61549, -22.8051)
 use_collision = true
 collision_mask = 7
 size = Vector3(3.19324, 9.57303, 3.56126)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(0.971805, 0, 0.235787, 0, 1, 0, -0.235787, 0, 0.971805, 1.07798, 28.5224, 7.68679)
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.971805, 0, 0.235787, 0, 1, 0, -0.235787, 0, 0.971805, 1.07798, 37.0853, 7.68679)
 use_collision = true
 collision_mask = 7
-size = Vector3(23.1321, 58.0449, 5.92963)
+size = Vector3(23.1321, 75.1708, 5.92963)
 
-[node name="CSGBox3D19" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(0.88072, 0, 0.473645, 0, 1, 0, -0.473645, 0, 0.88072, -14.8081, 4.30394, 6.73382)
+[node name="CSGBox3D20" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.622012, 0, 0.783017, 0, 1, 0, -0.783017, 0, 0.622012, -16.1105, 3.42859, 7.30672)
 use_collision = true
 collision_mask = 7
-size = Vector3(6.47086, 5.59668, 17.3657)
+size = Vector3(6.47086, 12.8101, 17.38)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(0.936788, 0, 0.349897, 0, 1, 0, -0.349897, 0, 0.936788, -12.4476, 1.19865, 5.60418)
+[node name="CSGBox3D19" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.88072, 0, 0.473645, 0, 1, 0, -0.473645, 0, 0.88072, -14.9105, 2.85496, 6.54348)
 use_collision = true
 collision_mask = 7
-size = Vector3(3.88981, 5.59668, 17.0293)
+size = Vector3(6.47086, 8.49463, 16.9772)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.936788, 0, 0.349897, 0, 1, 0, -0.349897, 0, 0.936788, -12.489, 1.19865, 5.49326)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.88981, 5.59668, 16.7925)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Level_geometry"]
 transform = Transform3D(0.948942, 0, 0.31545, 0, 1, 0, -0.31545, 0, 0.948942, 7.62039, 0, -0.740144)
 use_collision = true
 collision_mask = 7
 size = Vector3(40.2816, 1, 17.0293)
+
+[node name="CSGBox3D47" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.732794, 0.675858, -0.078942, 0.128116, 0.023099, -0.991491, -0.668283, -0.736672, -0.103514, 86.0831, 10.4397, 13.7324)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 9.57303, 3.56126)
+
+[node name="CSGBox3D48" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.999721, 0.00570166, -0.0229863, -0.00537835, -0.999888, -0.0141062, -0.0230646, -0.0139788, 0.999638, 95.2484, 3.91618, 16.3059)
+use_collision = true
+collision_mask = 7
+size = Vector3(5.89252, 9.57303, 6.9193)
+
+[node name="CSGBox3D50" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.838769, 0.540187, 0.0683254, 0.0092779, 0.111289, -0.993746, -0.544411, 0.834157, 0.0883336, 100.837, 3.41867, 25.1673)
+use_collision = true
+collision_mask = 7
+size = Vector3(2.74948, 3.56247, 11.0256)
+
+[node name="CSGBox3D51" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.730854, 0.0174864, 0.682313, 0.0195788, 0.999797, -0.00465131, -0.682256, 0.00995954, -0.731048, 94.9053, 30.2245, 50.3428)
+use_collision = true
+collision_mask = 7
+size = Vector3(35.2355, 83.7563, 29.3736)
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.736607, 0.675858, 0.0250842, -0.0128471, 0.023099, -0.999651, -0.676201, -0.736672, -0.00833127, 101.933, 11.607, 33.5143)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 8.99306, 6.42858)
+
+[node name="CSGBox3D49" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.838769, 0.540187, 0.0683254, 0.0092779, 0.111289, -0.993746, -0.544411, 0.834157, 0.0883336, 98.9715, 7.32502, 22.3219)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 9.57303, 3.56126)
+
+[node name="CSGBox3D53" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.993496, 0.113042, 0.0137381, -0.0171012, -0.0288394, -0.999439, -0.112582, -0.993173, 0.0305852, 98.1125, 9.8655, 32.7987)
+use_collision = true
+collision_mask = 7
+size = Vector3(11.2076, 9.43739, 3.56126)
+
+[node name="CSGBox3D54" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.859258, 0.507554, 0.0637695, -0.0487433, 0.0428562, -0.997892, -0.509217, -0.860555, -0.0120842, 108.235, 15.5572, 36.383)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 8.10764, 3.80658)
+
+[node name="CSGBox3D55" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.859317, 0.508361, 0.0560977, -0.0605338, 0.00781969, -0.998136, -0.507851, -0.86111, 0.0240537, 111.563, 19.8469, 42.3629)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 14.6573, 1.99362)
+
+[node name="CSGBox3D56" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.859317, 0.508361, 0.0560977, -0.0605338, 0.00781969, -0.998136, -0.507851, -0.86111, 0.0240537, 110.621, 24.6824, 43.3804)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 6.12336, 11.7034)
+
+[node name="CSGBox3D57" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.666325, -0.745663, 0.00052424, -0.0487433, 0.0428562, -0.997892, 0.744068, -0.664946, -0.0649023, 106.138, 28.567, 40.6242)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 8.10764, 3.80658)
+
+[node name="CSGBox3D58" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.667913, -0.74267, -0.0483276, -0.0160653, 0.0793082, -0.996722, 0.744068, -0.664946, -0.0649023, 100.394, 29.0524, 35.4971)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 8.10764, 3.80658)
+
+[node name="CSGBox3D59" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.667869, -0.737699, -0.0987621, 0.0177935, 0.116832, -0.992993, 0.744068, -0.664946, -0.0649023, 94.3817, 29.9287, 30.175)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 8.10764, 3.80658)
+
+[node name="CSGBox3D61" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.157645, 0.987411, -0.0130675, -0.0293794, -0.0085371, -0.999533, -0.98706, 0.157955, 0.0276641, 67.9625, 19.3338, 23.2837)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 3.79872, 21.3086)
+
+[node name="CSGBox3D62" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.753923, 0.0800555, -0.652068, -0.0124679, 0.994112, 0.107634, 0.656845, -0.0730175, 0.750482, 18.6266, 33.7586, 26.0237)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.7394, 8.11563, 18.4938)
+
+[node name="CSGBox3D63" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.988493, -0.132883, 0.0723, 0.0705227, -0.0180424, -0.997348, 0.133835, 0.99097, -0.00846401, 98.4967, 3.58911, 30.2724)
+use_collision = true
+collision_mask = 7
+size = Vector3(11.078, 4.00672, 11.0256)
+
+[node name="CSGBox3D64" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.770237, 0.371528, -0.518366, -0.427479, 0.903937, 0.0126904, 0.473284, 0.211815, 0.855066, 66.5522, 76.0052, 36.8713)
+use_collision = true
+collision_mask = 7
+size = Vector3(12.0363, 98.9379, 14.2486)
+
+[node name="CSGBox3D66" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.730854, -0.0338645, 0.681696, 0.0195788, 0.997317, 0.0705344, -0.682256, 0.064897, -0.72823, 103.923, 87.7146, 42.333)
+use_collision = true
+collision_mask = 7
+size = Vector3(22.2012, 65.344, 23.2485)
+
+[node name="CSGBox3D67" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.727227, -0.0802213, 0.681696, -0.0438126, 0.996547, 0.0705343, -0.685001, 0.0214277, -0.72823, 98.426, 63.62, 37.0068)
+use_collision = true
+collision_mask = 7
+size = Vector3(22.8838, 30.3046, 14.0908)
+
+[node name="CSGBox3D68" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.986088, 0.0101632, 0.165927, 0.0106908, 0.999941, 0.00228712, -0.165894, 0.00402933, -0.986137, -24.2305, 34.0001, 96.7979)
+use_collision = true
+collision_mask = 7
+size = Vector3(25.9542, 75.0898, 46.5587)
+
+[node name="CSGBox3D69" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.85003, 0.0101632, -0.526639, 0.00651708, 0.999941, 0.00877783, 0.526697, 0.00402933, -0.850046, -16.0872, 37.8653, 121.896)
+use_collision = true
+collision_mask = 7
+size = Vector3(26.2238, 83.1874, 32.0774)
+
+[node name="CSGBox3D70" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.892122, 0.0921132, -0.442305, -0.102706, 0.994712, 0, 0.439966, 0.0454272, 0.896865, 43.8141, 30.3143, 31.0144)
+use_collision = true
+collision_mask = 7
+size = Vector3(21.0275, 6.70506, 11.7739)
+
+[node name="CSGBox3D71" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.476924, -0.0342729, 0.878278, 0.0301945, 0.999285, 0.0225988, -0.878428, 0.0157424, 0.477617, -41.5579, 10.0374, 42.928)
+use_collision = true
+collision_mask = 7
+size = Vector3(12.482, 48.5756, 6.40612)
+
+[node name="CSGBox3D72" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.335402, -0.0342729, 0.941453, 0.0263375, 0.999285, 0.0269955, -0.941709, 0.0157424, 0.336064, -50.6533, 8.90355, 69.9238)
+use_collision = true
+collision_mask = 7
+size = Vector3(12.482, 47.7828, 7.67083)
+
+[node name="CSGBox3D73" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.466763, -0.0761593, -0.881098, 0.161036, 0.986949, 0, 0.869598, -0.141888, 0.472936, 101.186, 55.7259, 71.3591)
+use_collision = true
+collision_mask = 7
+size = Vector3(31.4919, 132.944, 20.0355)
+
+[node name="CSGBox3D74" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.209476, -0.0341791, 0.977217, 0.161036, 0.986949, 9.44319e-09, -0.964463, 0.157366, 0.212246, 107.537, 70.2462, 129.859)
+use_collision = true
+collision_mask = 7
+size = Vector3(30.2515, 162.571, 12.6421)
+
+[node name="CSGBox3D75" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.302237, 0, 0.953233, -0.0993752, 0.994551, -0.0315084, -0.948039, -0.104251, -0.30059, 7.72618, -3.88471, 55.5145)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 9.57303, 3.56126)
+
+[node name="CSGBox3D76" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.302237, 0, 0.953233, 0.00188004, 0.999998, 0.000596095, -0.953231, 0.00197196, -0.302236, 10.4995, -3.94371, 62.2048)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 12.7905, 3.56126)
+
+[node name="CSGBox3D77" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.0922147, -0.000420121, 0.995739, 0.00188004, 0.999998, 0.000596095, -0.995738, 0.00192669, -0.0922136, 7.59003, -2.97932, 68.4262)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 12.7905, 4.17028)
+
+[node name="CSGBox3D65" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.924666, 0, -0.38078, 0, 1, 0, 0.38078, 0, 0.924666, 35.0354, -5.14409, -8.61615)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.722, 17.4226, 22.2031)
+
+[node name="CSGBox3D78" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.404221, 0.0101632, -0.914607, 0.000422624, 0.999941, 0.0109245, 0.914663, 0.00402933, -0.404201, 41.1865, 143.806, 115.947)
+use_collision = true
+collision_mask = 7
+size = Vector3(14.2984, 11.0632, 134.257)
+
+[node name="CSGBox3D79" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.720631, 0.0101632, -0.693247, 0.00453052, 0.999941, 0.00994973, 0.693307, 0.00402933, -0.720634, -0.44881, 43.3427, 141.64)
+use_collision = true
+collision_mask = 7
+size = Vector3(23.4385, 92.323, 28.5659)
+
+[node name="CSGBox3D80" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.932567, 0.0303411, 0.359724, 0.0592403, 0.995816, 0.0695845, -0.356109, 0.086203, -0.930461, 22.7532, 92.1565, 160.175)
+use_collision = true
+collision_mask = 7
+size = Vector3(35.2355, 156.946, 34.8064)
+
+[node name="CSGBox3D81" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.730854, -0.00116667, 0.682536, 0.0195788, 0.999551, 0.0226734, -0.682256, 0.0299342, -0.730503, 92.9491, 143.655, 55.4685)
+use_collision = true
+collision_mask = 7
+size = Vector3(35.5424, 83.7563, 34.3889)
+
+[node name="CSGBox3D82" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.939441, -0.0342729, 0.340997, -0.0268393, 0.999285, 0.0264993, -0.341664, 0.0157424, -0.939691, -36.189, 9.24432, 79.7842)
+use_collision = true
+collision_mask = 7
+size = Vector3(12.482, 47.7828, 7.67083)
+
+[node name="CSGBox3D83" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.158288, -0.0342729, 0.986799, 0.0209792, 0.999285, 0.0313419, -0.987172, 0.0157424, 0.158892, -37.6152, 8.7853, 105.819)
+use_collision = true
+collision_mask = 7
+size = Vector3(12.482, 47.7828, 7.67083)
+
+[node name="CSGBox3D84" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.0780371, -0.0104806, 0.996896, 0.0186897, 0.99975, 0.0119742, -0.996777, 0.0195673, -0.0778234, -45.6533, 5.32401, 123.75)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.2356, 44.9267, 8.98434)
+
+[node name="CSGBox3D85" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.565714, -0.0104806, 0.824535, 0.0102063, 0.99975, 0.0197115, -0.824541, 0.0195673, -0.565468, -25.395, 5.42032, 129.681)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.2356, 44.9267, 8.98434)
+
+[node name="CSGBox3D86" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.693063, -0.0104806, 0.720801, 0.00684173, 0.99975, 0.0211167, -0.720847, 0.0195673, -0.692821, -10.7076, 3.18424, 145.606)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.2356, 44.9267, 8.98434)
+
+[node name="CSGBox3D87" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.947261, -0.0104806, 0.320297, -0.00365975, 0.99975, 0.0218942, -0.320449, 0.0195673, -0.947065, 0.959356, 2.99678, 161.434)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.2356, 44.9267, 13.5732)
+
+[node name="CSGBox3D88" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.947261, -0.0104806, 0.320297, -0.00365975, 0.99975, 0.0218942, -0.320449, 0.0195673, -0.947065, 24.0491, 3.05231, 170.966)
+use_collision = true
+collision_mask = 7
+size = Vector3(12.0631, 44.9267, 16.834)
+
+[node name="CSGBox3D89" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.933707, -0.00183683, 0.358039, 0.00787437, 0.99964, 0.0256634, -0.357958, 0.0267821, -0.933355, 51.4394, 16.4298, 165.421)
+use_collision = true
+collision_mask = 7
+size = Vector3(35.2355, 63.044, 34.8064)
+
+[node name="CSGBox3D90" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.947261, -0.0104806, 0.320297, -0.00365975, 0.99975, 0.0218942, -0.320449, 0.0195673, -0.947065, 53.647, 12.8063, 185.514)
+use_collision = true
+collision_mask = 7
+size = Vector3(24.4195, 34.291, 8.66504)
+
+[node name="CSGBox3D91" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.939876, -0.118515, 0.320297, -0.11773, 0.9928, 0.0218942, -0.320589, -0.0171305, -0.947065, 35.8154, 25.103, 175.865)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.2356, 4.18416, 9.64404)
+
+[node name="CSGBox3D92" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.812355, -0.0993752, -0.574634, -0.0389277, 0.992417, -0.116593, 0.581863, -0.072346, -0.810063, -58.3535, 7.19118, 91.6004)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 21.726, 3.56126)
+
+[node name="CSGBox3D93" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.161933, -0.121405, -0.979305, -0.0389277, 0.992417, -0.116593, 0.986034, 0.0192418, -0.165431, -52.1437, 5.25743, 105.616)
+use_collision = true
+collision_mask = 7
+size = Vector3(2.09808, 17.8719, 3.56126)
+
+[node name="CSGBox3D94" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.472005, -0.0845815, -0.87753, -0.0389277, 0.992417, -0.116593, 0.880736, 0.0891928, 0.465133, -41.0128, 3.20122, 142.77)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.176, 13.9086, 5.4577)
+
+[node name="CSGBox3D95" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.954538, 0.00242208, -0.298081, -0.0389277, 0.992417, -0.116593, 0.295538, 0.122896, 0.947393, -19.7608, 6.69625, 160.403)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.176, 16.0783, 4.48031)
+
+[node name="CSGBox3D96" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.954538, 0.00242208, -0.298081, -0.0389277, 0.992417, -0.116593, 0.295538, 0.122896, 0.947393, 9.86093, -0.625426, 171.192)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.176, 16.0783, 4.48031)
+
+[node name="CSGBox3D97" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.849927, 0.0150386, -0.526686, 0.014976, 0.9985, 0.0526778, 0.526688, -0.0526597, 0.848426, 14.4769, 0.220226, 162.702)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.176, 9.65782, 7.44328)
+
+[node name="CSGBox3D98" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.954538, 0.00242207, -0.298081, 0.00686846, 0.999523, 0.0301169, 0.298011, -0.0307948, 0.954066, 21.427, -0.33382, 159.361)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.176, 9.65782, 2.68652)
+
+[node name="CSGBox3D99" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.954538, 0.00242207, -0.298081, 0.00686846, 0.999523, 0.0301169, 0.298011, -0.0307948, 0.954066, 21.427, -2.78946, 159.361)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.176, 9.65782, 2.68652)
+
+[node name="CSGBox3D100" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.336211, 0.010158, -0.941733, -0.00676415, 0.999886, 0.0132001, 0.941765, 0.0108066, -0.336103, 64.3533, 16.2766, 179.842)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.3581, 41.9227, 8.66504)
+
+[node name="CSGBox3D101" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.336211, 0.010158, -0.941733, -0.00676415, 0.999886, 0.0132001, 0.941765, 0.0108066, -0.336103, 68.236, 21.7595, 171.098)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.3581, 41.9227, 8.66504)
+
+[node name="CSGBox3D102" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.844202, -0.0135978, 0.535857, 0.0139386, 0.998783, 0.0473043, -0.535848, 0.0474034, -0.842985, 69.24, 74.4022, 30.3142)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.2657, 4.59323, 8.08698)
+
+[node name="CSGBox3D103" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.56682, -0.030904, -0.823264, 0.109509, 0.987602, -0.112471, 0.816534, -0.153905, -0.556408, 56.5266, 60.9369, 27.5578)
+use_collision = true
+collision_mask = 7
+size = Vector3(4.98248, 17.7829, 4.76517)
+
+[node name="CSGBox3D104" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.827495, -0.432507, 0.358039, -0.454319, 0.89047, 0.0256633, -0.329924, -0.141427, -0.933355, 56.5031, 60.5456, 157.057)
+use_collision = true
+collision_mask = 7
+size = Vector3(17.3911, 36.9288, 13.2875)
+
+[node name="CSGBox3D105" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.893802, -0.270054, 0.358039, -0.279699, 0.959746, 0.0256634, -0.350558, -0.0772041, -0.933355, 43.6182, 87.0304, 153.991)
+use_collision = true
+collision_mask = 7
+size = Vector3(13.6271, 30.4625, 11.1433)
+
+[node name="CSGBox3D106" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.933707, 0.111753, 0.340157, 0.00787438, 0.956223, -0.292536, -0.357958, -0.270463, -0.89371, 41.4279, 69.0032, 169.058)
+use_collision = true
+collision_mask = 7
+size = Vector3(18.3152, 47.686, 8.83952)
+
+[node name="CSGBox3D107" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.933656, 0.0098963, 0.358039, 0.0204353, 0.999462, 0.0256634, -0.357594, 0.0312781, -0.933355, 92.4988, 47.7416, 154.086)
+use_collision = true
+collision_mask = 7
+size = Vector3(35.6261, 115.511, 43.9343)
+
+[node name="CSGBox3D108" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.986088, 0.0101632, 0.165927, 0.0106908, 0.999941, 0.00228712, -0.165894, 0.00402933, -0.986137, -31.5068, 111.806, 95.7541)
+use_collision = true
+collision_mask = 7
+size = Vector3(11.1537, 87.0005, 46.5587)
+
+[node name="CSGBox3D109" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.85003, 0.0101632, -0.526639, 0.00651708, 0.999941, 0.00877783, 0.526697, 0.00402933, -0.850046, -22.7688, 111.021, 126.791)
+use_collision = true
+collision_mask = 7
+size = Vector3(11.8986, 80.1092, 32.0774)
+
+[node name="CSGBox3D110" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.720631, 0.0101632, -0.693247, 0.00453052, 0.999941, 0.00994973, 0.693307, 0.00402933, -0.720634, -6.23826, 110.956, 148.143)
+use_collision = true
+collision_mask = 7
+size = Vector3(6.97187, 79.2975, 28.5659)
+
+[node name="CSGBox3D111" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.729125, -0.0605847, 0.681696, -0.0169276, 0.997366, 0.0705343, -0.684174, 0.0398889, -0.72823, 106.574, 77.7082, 30.7358)
+use_collision = true
+collision_mask = 7
+size = Vector3(17.3269, 18.7844, 15.2377)
+
+[node name="CSGBox3D112" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.728874, -0.0635365, 0.681696, -0.020966, 0.997289, 0.0705344, -0.68433, 0.0371182, -0.72823, 113.594, 120.053, 56.8972)
+use_collision = true
+collision_mask = 7
+size = Vector3(7.96826, 4.09097, 13.7305)
+
+[node name="CSGBox3D113" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.949573, 0.0147029, 0.313207, 0.0191962, 0.999753, 0.0112672, -0.312965, 0.0167121, -0.949619, 58.6958, 9.67432, 147.347)
+use_collision = true
+collision_mask = 7
+size = Vector3(38.4072, 54.9744, 9.13238)
+
+[node name="CSGBox3D114" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.284322, -0.00500946, 0.958716, 0.0243845, 0.999701, -0.00200781, -0.958419, 0.0239484, 0.284359, 14.0445, 23.8317, 132.789)
+use_collision = true
+collision_mask = 7
+size = Vector3(4.25592, 13.3074, 4.17028)
+
+[node name="CSGBox3D115" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.57412, -0.000420121, 0.818771, 0.00133662, 0.999998, 0.00145023, -0.81877, 0.00192669, -0.574118, 2.33648, 7.36038, 125.831)
+use_collision = true
+collision_mask = 7
+size = Vector3(16.668, 33.6956, 4.8366)
+
+[node name="CSGBox3D116" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.534648, -0.000420121, 0.845075, 0.00140388, 0.999998, 0.00138523, -0.845074, 0.00192669, -0.534646, -7.25496, 5.81077, 112.697)
+use_collision = true
+collision_mask = 7
+size = Vector3(9.08359, 14.1696, 4.17028)
+
+[node name="CSGBox3D117" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.171345, -0.000420121, 0.985211, 0.00182651, 0.999998, 0.000744131, -0.98521, 0.00192669, -0.171344, -11.6451, 4.84111, 102.82)
+use_collision = true
+collision_mask = 7
+size = Vector3(21.0971, 12.7905, 5.6546)
+
+[node name="CSGBox3D118" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.983455, -0.00690642, 0.181023, -0.000956806, 0.999457, 0.0329318, -0.181152, 0.0322136, -0.982927, -9.28959, 0.488423, 88.1008)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.19324, 19.8163, 4.17028)
+
+[node name="CSGBox3D119" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.452404, -0.000420121, 0.891813, 0.00152849, 0.999998, 0.00124641, -0.891812, 0.00192669, -0.452402, -4.82551, 0.0394478, 81.4291)
+use_collision = true
+collision_mask = 7
+size = Vector3(4.07074, 18.8886, 5.07391)
+
+[node name="CSGBox3D120" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.450925, -0.000420121, 0.892562, 0.00153055, 0.999998, 0.00124387, -0.892561, 0.00192669, -0.450923, 2.8843, 0.146365, 78.1234)
+use_collision = true
+collision_mask = 7
+size = Vector3(3.75824, 13.9109, 4.17028)
+
+[node name="CSGBox3D121" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.123393, -0.000420121, 0.992358, 0.00196411, 0.999998, 0.000179265, -0.992356, 0.00192669, 0.123394, 8.84002, -0.479784, 73.7747)
+use_collision = true
+collision_mask = 7
+size = Vector3(4.19574, 12.7905, 4.74542)
+
+[node name="CSGBox3D122" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.285897, -0.939961, -0.186374, 0.0161438, -0.18974, 0.981702, -0.958125, -0.283674, -0.0390716, 29.3684, 33.0509, 138.582)
+use_collision = true
+collision_mask = 7
+size = Vector3(4.25592, 25.2916, 4.19497)
+
+[node name="CSGBox3D123" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.116137, 0.0446514, -0.99223, -0.674848, 0.736531, -0.0458438, 0.728761, 0.674928, 0.115671, 105.37, 85.3827, 98.9599)
+use_collision = true
+collision_mask = 7
+size = Vector3(16.0613, 64.3566, 12.6441)
+
+[node name="CSGBox3D124" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.0885284, -0.0331477, -0.995523, -0.106101, 0.993446, -0.0425138, 0.990407, 0.109389, 0.0844313, 105.803, 121.576, 119.853)
+use_collision = true
+collision_mask = 7
+size = Vector3(10.5664, 39.7236, 13.375)
+
+[node name="CSGBox3D125" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.0882324, -0.0905441, -0.991977, -0.0384512, 0.994808, -0.0942227, 0.995358, 0.0464562, 0.0842929, 111.175, 105.685, 117.941)
+use_collision = true
+collision_mask = 7
+size = Vector3(7.78296, 9.66113, 15.2246)
+
+[node name="CSGBox3D126" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.211224, -0.0905441, -0.973236, -0.0647695, 0.994808, -0.0784941, 0.97529, 0.0464562, -0.215992, 111.196, 107.917, 129.649)
+use_collision = true
+collision_mask = 7
+size = Vector3(7.79382, 4.13525, 13.1484)
+
+[node name="CSGBox3D127" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.399551, -0.0736053, 0.913751, 0.0410814, 0.997207, 0.0623644, -0.91579, 0.0126208, 0.401459, 38.4757, 46.1756, 0.631235)
+use_collision = true
+collision_mask = 7
+size = Vector3(4.8356, 39.2776, 33.8954)
+
+[node name="CSGBox3D128" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.0694436, -0.438003, 0.896286, 0.99719, 0.0557753, -0.0500047, -0.0280885, 0.897241, 0.440646, 34.8587, 68.1527, 6.1563)
+use_collision = true
+collision_mask = 7
+size = Vector3(9.29492, 21.5655, 34.642)
+
+[node name="CSGBox3D129" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.0694436, -0.438003, 0.896286, 0.99719, 0.0557753, -0.0500047, -0.0280885, 0.897241, 0.440646, 47.0998, 65.5947, 15.7191)
+use_collision = true
+collision_mask = 7
+size = Vector3(7.73926, 20.024, 11.095)
+
+[node name="CSGBox3D130" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.971805, 0, 0.235787, 0, 1, 0, -0.235787, 0, 0.971805, 13.9846, 61.4888, 4.83338)
+use_collision = true
+collision_mask = 7
+size = Vector3(14.0491, 23.9794, 6.22803)
+
+[node name="CSGBox3D131" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.403986, -0.0430595, 0.913751, -0.0347437, 0.997448, 0.0623644, -0.914106, -0.056941, 0.401459, 55.7676, 6.28953, 6.18266)
+use_collision = true
+collision_mask = 7
+size = Vector3(2.60062, 48.5483, 21.6235)
+
+[node name="CSGBox3D132" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(0.399508, -0.0738354, 0.913751, 0.0416558, 0.997184, 0.0623644, -0.915783, 0.0131483, 0.401459, 40.5086, 32.6126, -2.72534)
+use_collision = true
+collision_mask = 7
+size = Vector3(2.77522, 2.8418, 8.26758)
+
+[node name="CSGBox3D134" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.318721, -0.0140644, -0.947746, -0.0111564, 0.999877, -0.0110871, 0.947785, 0.00703972, -0.318838, 80.0259, 16.9966, 136.222)
+use_collision = true
+collision_mask = 7
+size = Vector3(15.7202, 47.2142, 9.13238)
+
+[node name="CSGBox3D133" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.730854, 0.0116744, 0.682437, 0.0195788, 0.999801, 0.00386425, -0.682256, 0.0161856, -0.730937, 81.1939, 116.936, 67.2944)
+use_collision = true
+collision_mask = 7
+size = Vector3(6.60742, 7.66406, 19.0645)
+
+[node name="CSGBox3D135" type="CSGBox3D" parent="Environment/Level_geometry"]
+transform = Transform3D(-0.958789, -0.0140644, 0.283778, -0.011488, 0.999877, 0.0107416, -0.283894, 0.00703972, -0.958831, 93.5114, 23.1289, 130.051)
+use_collision = true
+collision_mask = 7
+size = Vector3(19.6629, 53.2692, 9.13238)
+
+[node name="Objectives" type="Node" parent="Environment"]
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5625, 5.74859, 159.334)
+material = SubResource("StandardMaterial3D_dd0lh")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6616, 14.6345, 0.391851)
+material = SubResource("StandardMaterial3D_dd0lh")
+
+[node name="CSGSphere3D6" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.3291, 74.2223, 48.7629)
+material = SubResource("StandardMaterial3D_dd0lh")
+
+[node name="CSGSphere3D9" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.843, 73.6284, 57.3822)
+material = SubResource("StandardMaterial3D_dd0lh")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.26846, 38.7554, 12.3205)
+material = SubResource("StandardMaterial3D_dd0lh")
+
+[node name="CSGSphere3D4" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.327, 50.9767, 165.274)
+material = SubResource("StandardMaterial3D_dd0lh")
+
+[node name="CSGSphere3D5" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48916, 91.4821, 142.11)
+material = SubResource("StandardMaterial3D_dd0lh")
+
+[node name="CSGSphere3D7" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.432, 1.44159, 33.9446)
+material = SubResource("StandardMaterial3D_dd0lh")
+
+[node name="CSGSphere3D10" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0601, 39.6842, -21.7857)
+material = SubResource("StandardMaterial3D_dd0lh")
+
+[node name="CSGSphere3D11" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.0588, 122.556, 71.4301)
+material = SubResource("StandardMaterial3D_dd0lh")
+
+[node name="CSGSphere3D8" type="CSGSphere3D" parent="Environment/Objectives"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.78231, 77.243, 9.5717)
+material = SubResource("StandardMaterial3D_dd0lh")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="sleeping_dragon" parent="." instance=ExtResource("4_bfxgj")]
+transform = Transform3D(-0.504527, 0, -0.324734, 0, 0.6, 0, 0.324734, 0, -0.504527, 50.869, -1.96775, 94.849)
 
 [connection signal="timeout" from="player/readyToSlide" to="player" method="_on_ready_to_slide_timeout"]

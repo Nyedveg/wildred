@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c2nw1i5a2j0l6"]
+
+[resource]
+resource_name = "Bush_Leaves"
+transparency = 4
+cull_mode = 2
+roughness = 0.0

@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b2rk520vfyw0u"]
+
+[resource]
+resource_name = "PalmTree_Trunk"
+cull_mode = 2

@@ -45,9 +45,16 @@ var climbing = false
 var wallrunning = false
 var readyToSlide = true
 var slide_triggered = false
-
+var ladder_array = []
 # Slide timer
 var slide_timer: Timer
+
+
+enum State{
+	NORMAL,
+	LADDER
+}
+var current_state = State.NORMAL
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -81,22 +88,27 @@ func _physics_process(delta: float) -> void:
 		direction = direction.lerp(Vector3.ZERO, turn_speed * delta)  # Reset if no input
 	
 	# Gravity
-	if not on_floor:
+	if not on_floor and current_state == State.NORMAL:
 		velocity += get_gravity() * delta
 	else:
 		can_double_jump = true
 
 	# Crouch state tracking
 	crouching = Input.is_action_pressed("crouch")
+	print(current_state)
+	if current_state == State.LADDER:
+		direction = Vector3(input_dir.x,input_dir.y*-1,0).rotated(Vector3.UP, global_transform.basis.get_euler().y).normalized()
 
 	# Jumping logic + jump animations
 	if Input.is_action_just_pressed("ui_accept") and not $RayCastRight.is_colliding() and not $RayCastLeft.is_colliding():
+		current_state = State.NORMAL
 		if on_floor:
 			velocity.y = jump_velocity
 			if velocity.length() < 2:
 				play_anim("jumping")
 			else:
 				play_anim("running_jump")
+			
 		elif can_double_jump:
 			can_double_jump = false
 			velocity.y = jump_velocity * 0.8

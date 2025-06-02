@@ -23,6 +23,10 @@ window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false

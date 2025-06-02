@@ -1,7 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://0uissik5kkpm"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://0uissik5kkpm"]
+
+[ext_resource type="Texture2D" uid="uid://blr53dii1dwf4" path="res://textures/trees/Flowers.png" id="1_c2gel"]
 
 [resource]
 resource_name = "Flowers"
 transparency = 4
 cull_mode = 2
-roughness = 0.0
+albedo_texture = ExtResource("1_c2gel")

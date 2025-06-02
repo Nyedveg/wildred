@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://ds3frxnong3dc"]
-
-[resource]
-resource_name = "BirchTree_Leaves"
-transparency = 4
-cull_mode = 2
-roughness = 0.0

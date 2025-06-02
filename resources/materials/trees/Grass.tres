@@ -1,5 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://cd42ygt66h43"]
-
-[resource]
-resource_name = "Grass"
-cull_mode = 2

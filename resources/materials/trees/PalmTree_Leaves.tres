@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://csgfx0jwcvgps"]
-
-[resource]
-resource_name = "PalmTree_Leaves"
-transparency = 4
-cull_mode = 2
-roughness = 0.0

@@ -11,12 +11,12 @@ seamless = true
 [resource]
 render_priority = 0
 shader = ExtResource("1_yhkle")
-shader_parameter/color = Color(0.301419, 0.419252, 0.210569, 1)
-shader_parameter/color2 = Color(0.690854, 0.901595, 0, 1)
+shader_parameter/color = Color(0.484615, 0.707429, 0.351725, 1)
+shader_parameter/color2 = Color(0.258091, 0.494592, 0, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_b3bil")
 shader_parameter/noiseScale = 20.0
 shader_parameter/leaf_texture = ExtResource("2_rvydf")
-shader_parameter/swayStrength = 0.12
+shader_parameter/swayStrength = 0.3
 shader_parameter/swaySpeed = 1.0
 shader_parameter/interact_radius = 1.5
 shader_parameter/velocity_threshold = 0.2

@@ -1,5 +1,11 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://b2rk520vfyw0u"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://b2rk520vfyw0u"]
+
+[ext_resource type="Texture2D" uid="uid://dlnn23kseu08n" path="res://textures/trees/PalmTree_Trunk.png" id="1_ti2t6"]
+[ext_resource type="Texture2D" uid="uid://vw2oqjf3mdyn" path="res://textures/trees/PalmTree_Trunk_Normal.png" id="2_g7s7x"]
 
 [resource]
 resource_name = "PalmTree_Trunk"
 cull_mode = 2
+albedo_texture = ExtResource("1_ti2t6")
+normal_enabled = true
+normal_texture = ExtResource("2_g7s7x")

@@ -1,5 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://t4jr6v5luoyi"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://t4jr6v5luoyi"]
+
+[ext_resource type="Texture2D" uid="uid://dasyqjk7ktnbo" path="res://textures/trees/Rocks.png" id="1_evsw3"]
 
 [resource]
 resource_name = "Rock"
 cull_mode = 2
+albedo_texture = ExtResource("1_evsw3")

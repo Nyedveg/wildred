@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b8v6e3mmd7pyg"]
 
 [ext_resource type="PackedScene" path="res://scenes/objects/Ladder_Model.tscn" id="1"]
-[ext_resource type="Script" uid="uid://b3lg23c8de4oh" path="res://scenes/objects/Ladder.gd" id="2"]
+[ext_resource type="Script" uid="uid://b3lg23c8de4oh" path="res://scripts/Ladder.gd" id="2"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(1, 2, 0.4)

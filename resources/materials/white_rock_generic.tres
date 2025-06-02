@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://3k13k1r7ga8i"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3wcrr"]
+
+[resource]
+albedo_color = Color(0.551053, 0.515606, 0.47237, 1)
+normal_scale = 0.64
+normal_texture = SubResource("CompressedTexture2D_3wcrr")
+heightmap_scale = 1.62

@@ -1,5 +1,11 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://bmbx0ixjfs16m"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bmbx0ixjfs16m"]
+
+[ext_resource type="Texture2D" uid="uid://ewx0no7aicum" path="res://textures/trees/MapleTree_Bark.png" id="1_mnv6v"]
+[ext_resource type="Texture2D" uid="uid://cnxam454og208" path="res://textures/trees/MapleTree_Bark_Normal.png" id="2_xx0fp"]
 
 [resource]
 resource_name = "MapleTree_Bark"
 cull_mode = 2
+albedo_texture = ExtResource("1_mnv6v")
+normal_enabled = true
+normal_texture = ExtResource("2_xx0fp")

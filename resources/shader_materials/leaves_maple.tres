@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://8kenxxehncb7"]
+
+[ext_resource type="Shader" uid="uid://ddwpm7snbqvlp" path="res://shaders/foliage_leaves.gdshader" id="1_4icmh"]
+[ext_resource type="Texture2D" uid="uid://di3bydvacv3t8" path="res://textures/trees/MapleTree_Leaves.png" id="2_4icmh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b3bil"]
+width = 1024
+height = 1024
+seamless = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4icmh")
+shader_parameter/color = Color(0.637462, 0.20695, 0.225865, 1)
+shader_parameter/color2 = Color(0.985856, 0.745718, 0.719134, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_b3bil")
+shader_parameter/noiseScale = 20.0
+shader_parameter/leaf_texture = ExtResource("2_4icmh")
+shader_parameter/swayStrength = 0.12
+shader_parameter/swaySpeed = 1.0
+shader_parameter/interact_radius = 1.5
+shader_parameter/velocity_threshold = 0.2
+shader_parameter/spring_strength = 0.05
+shader_parameter/blend_ease_power = 2.0

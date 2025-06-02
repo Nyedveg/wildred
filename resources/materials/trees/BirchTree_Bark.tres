@@ -1,5 +1,11 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://c38l07lx5xho0"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://c38l07lx5xho0"]
+
+[ext_resource type="Texture2D" uid="uid://cylh8jrwb24rx" path="res://textures/trees/BirchTree_Bark.png" id="1_dmtux"]
+[ext_resource type="Texture2D" uid="uid://vbk3uukja5s1" path="res://textures/trees/BirchTree_Bark_Normal.png" id="2_2gwvm"]
 
 [resource]
 resource_name = "BirchTree_Bark"
 cull_mode = 2
+albedo_texture = ExtResource("1_dmtux")
+normal_enabled = true
+normal_texture = ExtResource("2_2gwvm")

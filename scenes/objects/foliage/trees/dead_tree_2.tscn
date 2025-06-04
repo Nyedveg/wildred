@@ -37,5 +37,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xh0fk")
 
 [node name="DeadTree_2" type="MeshInstance3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh = SubResource("ArrayMesh_frk6x")
 skeleton = NodePath("")

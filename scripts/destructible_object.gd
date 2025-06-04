@@ -1,6 +1,8 @@
 extends Node3D
 
 @export var explosion_scene: PackedScene
+@export var impact_scene: PackedScene
+
 @export var enable_explosion: bool = true
 @export var knockback_force: float = 40.0
 @export var knockback_radius: float = 5.0
@@ -15,6 +17,8 @@ var current_health: int
 var knockback_area: Area3D = null
 var original_emissions := {}
 var flash_tweens := {}
+
+var impact_cooldown := 0.0
 
 func _ready() -> void:
 	current_health = max_health
@@ -42,12 +46,41 @@ func _on_body_entered(other_body: Node) -> void:
 	# Ignore self-collision
 	if other_body == body:
 		return
-		
+
 	var velocity = body.linear_velocity.length()
 	
 	if velocity >= impact_threshold:
 		var damage = floor(velocity)
 		apply_damage(damage)
+
+func _physics_process(delta: float) -> void:
+	impact_cooldown -= delta
+
+	# Don't do anything if cooldown is active
+	if impact_cooldown > 0.0:
+		return
+
+	var velocity = body.linear_velocity
+	var speed = velocity.length()
+	
+	if speed >= 0.1:
+		# Cast a ray in the direction of motion to simulate contact point
+		var ray_origin = body.global_transform.origin
+		var ray_target = ray_origin + velocity.normalized() * 0.5
+
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_target)
+		query.exclude = [body]
+		query.collision_mask = collision_mask
+		
+		var result = space_state.intersect_ray(query)
+		
+		if result:
+			var impact_point = result.position
+			var impact_normal = result.normal
+
+			spawn_impact(impact_point, impact_normal)
+			impact_cooldown = 0.3  # Prevents spamming every frame
 
 func apply_damage(amount: int) -> void:
 	current_health -= amount
@@ -57,10 +90,9 @@ func apply_damage(amount: int) -> void:
 		explode()
 
 func explode() -> void:
-	
 	# Apply knockback before spawning explosion effect
-	if enable_explosion:
-		apply_knockback()
+	# if enable_explosion:
+		# apply_knockback()
 	
 	# Spawn explosion effect
 	if explosion_scene:
@@ -105,56 +137,16 @@ func flash_red() -> void:
 			tween.tween_property(flash_mat, "emission", original_emissions[surface_index], 0.2)
 			flash_tweens[surface_index] = tween
 
-func apply_knockback() -> void:
-	var space_state = get_world_3d().direct_space_state
-	var shape = SphereShape3D.new()
-	shape.radius = knockback_radius
-	
-	var query = PhysicsShapeQueryParameters3D.new()
-	query.shape = shape
-	query.transform = Transform3D(Basis(), global_transform.origin)
-	query.collision_mask = collision_mask  # Use configurable collision mask
-	query.collide_with_areas = false
-	query.collide_with_bodies = true
-	
-	var results = space_state.intersect_shape(query, 32)
-	
-	for result in results:
-		var obj = result.get("collider")
-		
-		# Skip self
-		if obj == body:
-			continue
-			
-		var knockback_direction = (obj.global_transform.origin - global_transform.origin)
-		
-		# Handle case where objects are at exact same position
-		if knockback_direction.length() < 0.01:
-			knockback_direction = Vector3.UP
-		else:
-			knockback_direction = knockback_direction.normalized()
-		
-		var impulse = knockback_direction * knockback_force
-		
-		# Handle different physics body types
-		if obj is RigidBody3D:
-			obj.apply_impulse(impulse)
-			
-		elif obj is CharacterBody3D:
-			# For CharacterBody3D, we need to apply knockback differently
-			# Check if the object has a knockback method or property
-			if obj.has_method("apply_knockback"):
-				obj.apply_knockback(impulse)
-			elif obj.has_method("take_knockback"):
-				obj.take_knockback(impulse)
-			else:
-				# Fallback: try to set velocity directly
-				if "velocity" in obj:
-					obj.velocity += impulse
-			
-		# Handle custom knockback interface
-		elif obj.has_method("receive_explosion_knockback"):
-			obj.receive_explosion_knockback(impulse, global_transform.origin)
+func spawn_impact(position: Vector3, normal: Vector3) -> void:
+	if impact_scene:
+		var impact_instance = impact_scene.instantiate()
+
+		# Add to scene *first*
+		get_tree().current_scene.add_child(impact_instance)
+
+		# Set position
+		# impact_instance.global_transform = Transform3D().looking_at(normal.normalized(), Vector3.UP)
+		impact_instance.global_transform.origin = position
 
 # Optional: Add a method to manually trigger explosion (useful for testing)
 func trigger_explosion() -> void:

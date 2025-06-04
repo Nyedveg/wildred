@@ -11,12 +11,12 @@ shader = ExtResource("1_mp0u8")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1j6b4"]
 render_priority = 0
 shader = ExtResource("2_8ohjr")
-shader_parameter/MarkColor = Color(0.696537, 0.901137, 0.954395, 1)
+shader_parameter/MarkColor = Color(0.844216, 0.933654, 0.981071, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_80h4g"]
 render_priority = 0
 shader = ExtResource("3_1j6b4")
-shader_parameter/ColorParameter = Color(0.477224, 0.761612, 0.811227, 1)
+shader_parameter/ColorParameter = Color(0.843137, 0.933333, 0.980392, 1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vyb3p"]
 _surfaces = [{

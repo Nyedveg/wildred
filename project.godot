@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="Wildred"
-run/main_scene="res://scenes/levels/test_scene.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,7 +24,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/GPUTrail/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
 
 [filesystem]
 
@@ -93,7 +92,7 @@ attack={
 
 wind_direction={
 "type": "vec3",
-"value": Vector3(0, 0, 0)
+"value": Vector3(-1, 0, 0)
 }
 wind_intensity={
 "type": "float",

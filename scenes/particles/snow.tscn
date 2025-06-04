@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuvfuxs2r4ec1"]
+
+[ext_resource type="Shader" uid="uid://5of62nsol1pf" path="res://shaders/snowflake.tres" id="1_gpwb7"]
+[ext_resource type="Texture2D" uid="uid://d6fy1cbwgeos" path="res://textures/snowflakes_texture.png" id="2_o3o6l"]
+
+[sub_resource type="Curve" id="Curve_7501q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0984127, 1), 0.0, 0.0, 0, 0, Vector2(0.895238, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_wrud3"]
+curve = SubResource("Curve_7501q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ogv2g"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 0.5, 10)
+angle_min = -180.0
+angle_max = 180.0
+spread = 10.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+scale_min = 0.2
+scale_max = 0.4
+alpha_curve = SubResource("CurveTexture_wrud3")
+turbulence_enabled = true
+turbulence_noise_scale = 5.0
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3o6l"]
+render_priority = 0
+shader = ExtResource("1_gpwb7")
+shader_parameter/snowflake_texture = ExtResource("2_o3o6l")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gpwb7"]
+material = SubResource("ShaderMaterial_o3o6l")
+
+[node name="Snow" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 200
+lifetime = 30.0
+randomness = 1.0
+visibility_aabb = AABB(-10, -20, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_ogv2g")
+draw_pass_1 = SubResource("QuadMesh_gpwb7")

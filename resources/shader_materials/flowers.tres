@@ -11,8 +11,8 @@ seamless = true
 [resource]
 render_priority = 0
 shader = ExtResource("1_riecs")
-shader_parameter/color = Color(0.815686, 0.917647, 0.737255, 1)
-shader_parameter/color2 = Color(0.815686, 0.917647, 0.737255, 1)
+shader_parameter/color = Color(0.137454, 0.223682, 0.132697, 1)
+shader_parameter/color2 = Color(0.547521, 0.854512, 0.402188, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_b3bil")
 shader_parameter/noiseScale = 20.0
 shader_parameter/leaf_texture = ExtResource("2_riecs")

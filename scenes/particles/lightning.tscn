@@ -1,6 +1,42 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcaecr38rf81w"]
+[gd_scene load_steps=8 format=3 uid="uid://dcaecr38rf81w"]
 
 [ext_resource type="ArrayMesh" uid="uid://dy77886kp4u7k" path="res://resources/meshes/lightning_editable.tres" id="1_2hrdq"]
+
+[sub_resource type="Animation" id="Animation_2jg7d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2hrdq"]
+resource_name = "lightning"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0q6fh"]
+_data = {
+&"RESET": SubResource("Animation_2jg7d"),
+&"lightning": SubResource("Animation_2hrdq")
+}
 
 [sub_resource type="Gradient" id="Gradient_dcnan"]
 
@@ -20,9 +56,18 @@ color_ramp = SubResource("GradientTexture1D_pkuik")
 
 [node name="Lightning" type="Node3D"]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../GPUParticles3D")
+libraries = {
+&"": SubResource("AnimationLibrary_0q6fh")
+}
+autoplay = "lightning"
+
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
 amount = 1
 lifetime = 0.3
+one_shot = true
 randomness = 1.0
 visibility_aabb = AABB(-4, 0, -4, 8, 60, 8)
 process_material = SubResource("ParticleProcessMaterial_434qh")

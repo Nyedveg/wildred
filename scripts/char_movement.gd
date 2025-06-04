@@ -6,6 +6,10 @@ extends CharacterBody3D
 @onready var interact_raycast: RayCast3D = $camera_mount/Camera/InteractRaycast
 @onready var hold_point: Node3D = $camera_mount/Camera/HoldPoint
 
+@onready var gpu_trail_3d: GPUTrail3D = $visuals/wildred_mc/Armature/Skeleton3D/BoneAttachment3D/GPUTrail3D
+@onready var gpu_trail_3d1: GPUTrail3D = $visuals/wildred_mc/Armature/Skeleton3D/BoneAttachment3D2/GPUTrail3D
+@onready var gpu_trail_3d2: GPUTrail3D = $visuals/wildred_mc/Armature/Skeleton3D/BoneAttachment3D3/GPUTrail3D
+@onready var gpu_trail_3d3: GPUTrail3D = $visuals/wildred_mc/Armature/Skeleton3D/BoneAttachment3D4/GPUTrail3D
 
 var speed = 3.0
 var push_force = 80.0
@@ -95,7 +99,6 @@ func _physics_process(delta: float) -> void:
 
 	# Crouch state tracking
 	crouching = Input.is_action_pressed("crouch")
-	print(current_state)
 	if current_state == State.LADDER:
 		direction = Vector3(input_dir.x,input_dir.y*-1,0).rotated(Vector3.UP, global_transform.basis.get_euler().y).normalized()
 
@@ -181,6 +184,17 @@ func _physics_process(delta: float) -> void:
 	if not sliding:
 		velocity.x = move_toward(velocity.x, 0, (abs(velocity.x * frictionFromSpeedCoefficient) + abs((frictionFactorK * velocity).x)) * delta)
 		velocity.z = move_toward(velocity.z, 0, (abs(velocity.z * frictionFromSpeedCoefficient) + abs((frictionFactorK * velocity).z)) * delta)
+	
+	if velocity.length() > 5:
+		gpu_trail_3d.emitting = true;
+		gpu_trail_3d1.emitting = true;
+		gpu_trail_3d2.emitting = true;
+		gpu_trail_3d3.emitting = true;
+	else:
+		gpu_trail_3d.emitting = false;
+		gpu_trail_3d1.emitting = false;
+		gpu_trail_3d2.emitting = false;
+		gpu_trail_3d3.emitting = false;
 	
 	# Handle object interaction
 	update_object_interaction()

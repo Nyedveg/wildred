@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://b2e8l1koours1"]
 
-[ext_resource type="Texture2D" uid="uid://crjxkx7ff37m4" path="res://textures/lightning/Lightning_mark_texture.png" id="1_8onig"]
+[ext_resource type="Texture2D" uid="uid://dumqhebtucoes" path="res://textures/T_groundmark_emissive.png" id="1_8onig"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_5fp21"]
 expanded_output_ports = [0]

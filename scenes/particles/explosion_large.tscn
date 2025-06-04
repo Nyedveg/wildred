@@ -63,7 +63,7 @@ curve = SubResource("Curve_qwhnj")
 _data = [Vector2(0, 0.275766), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_qwhnj"]
+[sub_resource type="CurveTexture" id="CurveTexture_j61bh"]
 curve = SubResource("Curve_aw520")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q0sqw"]
@@ -75,18 +75,18 @@ initial_velocity_max = 1.0
 gravity = Vector3(0, 0, 0)
 scale_min = 5.0
 scale_max = 7.0
-scale_curve = SubResource("CurveTexture_qwhnj")
+scale_curve = SubResource("CurveTexture_j61bh")
 alpha_curve = SubResource("CurveTexture_q0sqw")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j61bh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k2w52"]
 render_priority = -1
 shader = ExtResource("2_a6jh3")
 shader_parameter/Streak_color = Color(7, 0.8, 0.2, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_k2w52"]
-material = SubResource("ShaderMaterial_j61bh")
+material = SubResource("ShaderMaterial_k2w52")
 size = Vector2(0.25, 1)
 center_offset = Vector3(0, 0.4, 0)
 

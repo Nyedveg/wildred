@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjedrximofkf4"]
+
+[ext_resource type="PackedScene" uid="uid://lvl0jvu6h5j" path="res://scenes/objects/player.tscn" id="1_l74iw"]
+[ext_resource type="PackedScene" uid="uid://b8v6e3mmd7pyg" path="res://scenes/objects/Ladder.tscn" id="2_2viu0"]
+[ext_resource type="Material" uid="uid://dn7ix2kie4cga" path="res://resources/materials/sand_generic.tres" id="3_o8vhn"]
+
+[node name="TestLadders" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_l74iw")]
+
+[node name="Ladder" parent="." instance=ExtResource("2_2viu0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.99601)
+
+[node name="Ladder2" parent="." instance=ExtResource("2_2viu0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84276, 2.99601)
+
+[node name="Ladder3" parent="." instance=ExtResource("2_2viu0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.27179, 2.99601)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.948942, 0, 0.31545, 0, 1, 0, -0.31545, 0, 0.948942, 7.62039, -1.76396, -0.740144)
+material_override = ExtResource("3_o8vhn")
+use_collision = true
+collision_mask = 7
+size = Vector3(40.2816, 1, 17.0293)

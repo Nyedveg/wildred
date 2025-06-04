@@ -31,7 +31,7 @@ var direction: Vector3 = Vector3.ZERO
 @export var frictionFromSpeedCoefficient = 0.8
 @export var frictionBase = 4
 @export var turn_speed = 5.0
-
+@export var climbing_speed = 100
 # Object interaction settings
 @export var pickup_cooldown = 0.2  # Cooldown after throwing object
 @export var throw_force = 20.0     # Force applied when throwing
@@ -142,8 +142,15 @@ func _physics_process(delta: float) -> void:
 	# Speed setting
 	running = Input.is_action_pressed("sprint") and not crouching and not sliding
 	speed = running_speed if running else walking_speed
-
-	if not sliding:
+ 
+	#MOVEMENT
+	
+	if current_state == State.LADDER:
+		if Input.is_action_pressed("sprint"):
+			velocity.y = -input_dir.y * climbing_speed *delta * 1.5
+		else:
+			velocity.y = -input_dir.y * climbing_speed *delta
+	elif not sliding:
 		velocity.x += direction.x * speed * delta
 		velocity.z += direction.z * speed * delta
 	visuals.scale = Vector3(1, 1, 1)
@@ -185,16 +192,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, (abs(velocity.x * frictionFromSpeedCoefficient) + abs((frictionFactorK * velocity).x)) * delta)
 		velocity.z = move_toward(velocity.z, 0, (abs(velocity.z * frictionFromSpeedCoefficient) + abs((frictionFactorK * velocity).z)) * delta)
 	
-	if velocity.length() > 5:
-		gpu_trail_3d.emitting = true;
-		gpu_trail_3d1.emitting = true;
-		gpu_trail_3d2.emitting = true;
-		gpu_trail_3d3.emitting = true;
-	else:
-		gpu_trail_3d.emitting = false;
-		gpu_trail_3d1.emitting = false;
-		gpu_trail_3d2.emitting = false;
-		gpu_trail_3d3.emitting = false;
+	#if velocity.length() > 5:
+		#gpu_trail_3d.emitting = true;
+		#gpu_trail_3d1.emitting = true;
+		#gpu_trail_3d2.emitting = true;
+		#gpu_trail_3d3.emitting = true;
+	#else:
+		#gpu_trail_3d.emitting = false;
+		#gpu_trail_3d1.emitting = false;
+		#gpu_trail_3d2.emitting = false;
+		#gpu_trail_3d3.emitting = false;
 	
 	# Handle object interaction
 	update_object_interaction()
@@ -232,7 +239,9 @@ func update_object_interaction() -> void:
 			drop_object()
 
 func update_animation(direction: Vector3, on_floor: bool):
-	if sliding:
+	if current_state == State.LADDER:
+		play_anim("ladder_climbing")
+	elif sliding:
 		play_anim("slide")
 	elif climbing:
 		play_anim("climbing")

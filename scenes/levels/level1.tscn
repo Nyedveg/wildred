@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://3k13k1r7ga8i" path="res://resources/materials/white_rock_generic.tres" id="4_1seuy"]
 [ext_resource type="PackedScene" uid="uid://dffaqvr7m7y0y" path="res://scenes/objects/sleeping_dragon.tscn" id="4_bfxgj"]
 [ext_resource type="Material" uid="uid://dn7ix2kie4cga" path="res://resources/materials/sand_generic.tres" id="5_2r1tl"]
-[ext_resource type="PackedScene" uid="uid://c8eycvfgntsqh" path="res://scenes/objects/shrine.tscn" id="6_bw3ef"]
+[ext_resource type="PackedScene" path="res://scenes/objects/shrine.tscn" id="6_bw3ef"]
 [ext_resource type="Script" uid="uid://dqb4b5nqqeisu" path="res://addons/proton_scatter/src/scatter.gd" id="6_sbmf2"]
 [ext_resource type="Script" uid="uid://b45ka857g3jdb" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="7_1xax6"]
 [ext_resource type="Script" uid="uid://cckgw3bp0w5iy" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="8_g7tkf"]
@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://w7bxkx6acim1" path="res://scenes/objects/barrel_normal.tscn" id="24_vhxpm"]
 [ext_resource type="PackedScene" uid="uid://b4w8ceqo5uhqh" path="res://scenes/objects/foliage/trees/normal_tree_5.tscn" id="25_3gp1u"]
 [ext_resource type="PackedScene" uid="uid://e5xx5yecfnj" path="res://scenes/objects/barrel_explosive.tscn" id="25_arkx4"]
-[ext_resource type="PackedScene" uid="uid://b8v6e3mmd7pyg" path="res://scenes/objects/ladder.tscn" id="26_arkx4"]
+[ext_resource type="PackedScene" uid="uid://b8v6e3mmd7pyg" path="res://scenes/objects/Ladder.tscn" id="26_arkx4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1seuy"]
 material = ExtResource("2_bfxgj")
@@ -1693,5 +1693,17 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Ladder" parent="." instance=ExtResource("26_arkx4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55825, 4.83272)
+
+[node name="Ladder2" parent="." instance=ExtResource("26_arkx4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.53732, 4.83272)
+
+[node name="Ladder3" parent="." instance=ExtResource("26_arkx4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.47726, 4.83272)
+
+[node name="Ladder4" parent="." instance=ExtResource("26_arkx4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3463, 4.83272)
 
 [connection signal="timeout" from="player/readyToSlide" to="player" method="_on_ready_to_slide_timeout"]

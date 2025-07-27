@@ -1,24 +1,39 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://xhnl4bmbbajh"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://xhnl4bmbbajh"]
 
-[ext_resource type="Shader" uid="uid://2mldbu72tlw4" path="res://shaders/ocean.gdshader" id="1_1npu4"]
-[ext_resource type="Texture2D" uid="uid://cu33ap4c8v5fq" path="res://textures/T_MarbleNoise_tiled.png" id="2_602jv"]
-[ext_resource type="Texture2D" uid="uid://d1c8xmmln37or" path="res://textures/iGen28.png" id="3_sfjvy"]
+[ext_resource type="Shader" path="res://shaders/ocean_wip.gdshader" id="1_sq5e5"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_1npu4")
-shader_parameter/albedo = Color(0.167827, 0.548966, 0.678931, 1)
-shader_parameter/water_texture1 = ExtResource("3_sfjvy")
-shader_parameter/water_texture2 = ExtResource("3_sfjvy")
-shader_parameter/noise_texture = ExtResource("2_602jv")
-shader_parameter/scroll_speed1 = Vector2(0.05, 0)
-shader_parameter/scroll_speed2 = Vector2(-0.03, 0)
-shader_parameter/blend_factor = 0.5
-shader_parameter/scale1 = Vector2(1000, 1000)
-shader_parameter/scale2 = Vector2(1000, 1000)
-shader_parameter/wave_strength = 0.2
-shader_parameter/wave_scale = 0.02
-shader_parameter/pixelation_level = 64
-shader_parameter/FoamSize = 0.5
-shader_parameter/WaterOpacity = 0.9
-shader_parameter/FoamGlowIntensity = 0.5
+shader = ExtResource("1_sq5e5")
+shader_parameter/absorption_color = Color(0.115732, 0.134724, 0.163628, 1)
+shader_parameter/fresnel_radius = 2.0
+shader_parameter/fresnel_color = Color(0, 0.57, 0.72, 1)
+shader_parameter/roughness = 0.15
+shader_parameter/specular = 0.25
+shader_parameter/depth_distance = 25.0
+shader_parameter/beers_law = 4.5
+shader_parameter/displacement_strength = 0.1
+shader_parameter/displacement_scroll_speed = 0.1
+shader_parameter/displacement_scroll_offset = Vector2(-0.2, 0.3)
+shader_parameter/displacement_scale_offset = 0.5
+shader_parameter/displacement_scale = Vector2(0.04, 0.04)
+shader_parameter/edge_thickness = 0.3
+shader_parameter/edge_speed = 0.35
+shader_parameter/edge_noise_scale = Vector2(0.4, 0.4)
+shader_parameter/influence_size = 1.0
+shader_parameter/player_wave_frequenzy = 10.0
+shader_parameter/player_wave_speed = 5.0
+shader_parameter/caustic_size = 2.0
+shader_parameter/caustic_range = 40.0
+shader_parameter/caustic_strength = 0.08
+shader_parameter/ssr_mix_strength = 0.65
+shader_parameter/ssr_travel = 100.0
+shader_parameter/ssr_resolution_near = 1.0
+shader_parameter/ssr_resolution_far = 5.0
+shader_parameter/ssr_tolerance = 1.0
+shader_parameter/refraction_strength = 1.25
+shader_parameter/normal_map_strength = 1.0
+shader_parameter/scroll_speed = 0.3
+shader_parameter/scroll_offset = Vector2(0.1, -0.3)
+shader_parameter/scale_offset = 0.5
+shader_parameter/normal_map_scale = Vector2(0.1, 0.1)

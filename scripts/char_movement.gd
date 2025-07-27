@@ -36,7 +36,7 @@ var direction: Vector3 = Vector3.ZERO
 @export var pickup_cooldown = 0.2  # Cooldown after throwing object
 @export var throw_force = 20.0     # Force applied when throwing
 @export var hold_force = 10.0      # Force applied to keep object at hold point
-
+@export var wall_jump_height = 5 # How high up you jump from the wall
 # Camera sensitivity
 var sens_horizontal = 0.5
 var sens_vertical = 0.5
@@ -56,7 +56,9 @@ var slide_timer: Timer
 
 enum State{
 	NORMAL,
-	LADDER
+	LADDER,
+	HANGING,
+	CLIMBING
 }
 var current_state = State.NORMAL
 
@@ -86,11 +88,21 @@ func _physics_process(delta: float) -> void:
 	var on_floor = is_on_floor()
 	var input_dir := Input.get_vector("left", "right", "forward", "backward").normalized()
 	var turnToDirection := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if turnToDirection.length() > 0:  # Only interpolate if there's meaningful input
+	if turnToDirection.length() > 0 and (current_state == State.NORMAL):  # Only interpolate if there's meaningful input
 		direction = direction.lerp(turnToDirection, turn_speed * delta).normalized()
-	else:
+	elif current_state == State.NORMAL:
 		direction = direction.lerp(Vector3.ZERO, turn_speed * delta)  # Reset if no input
-	
+		
+		
+	# Climbing logic
+	climbing = $RayCastClimb.is_colliding() and not $RayCastClimb2.is_colliding()
+		
+	if Input.is_action_pressed("ui_accept") and climbing and current_state == State.NORMAL:
+		current_state = State.HANGING
+		velocity.y = 0 #MAKE A DROP DOWN BUTTON, PROBABLY A TIMER WITH IT TOO
+
+		#turnToDirection = direction #Problema su wallrunning logic, limpa prie sono ir del to keicia direction
+
 	# Gravity
 	if not on_floor and current_state == State.NORMAL:
 		velocity += get_gravity() * delta
@@ -101,11 +113,19 @@ func _physics_process(delta: float) -> void:
 	crouching = Input.is_action_pressed("crouch")
 	if current_state == State.LADDER:
 		direction = Vector3(input_dir.x,input_dir.y*-1,0).rotated(Vector3.UP, global_transform.basis.get_euler().y).normalized()
-
-	# Jumping logic + jump animations
+	
+	
+	# Jumping logic + jump animations + CLimbing logic
 	if Input.is_action_just_pressed("ui_accept") and not $RayCastRight.is_colliding() and not $RayCastLeft.is_colliding():
-		current_state = State.NORMAL
-		if on_floor:
+		if current_state == State.LADDER:
+			current_state = State.NORMAL
+		if current_state == State.HANGING:
+			#START CLIMBING UP THE WALL
+			current_state = State.NORMAL
+			#ANIMATION AND THEN TP MAYBE?
+			
+			
+		elif on_floor:
 			velocity.y = jump_velocity
 			if velocity.length() < 2:
 				play_anim("jumping")
@@ -136,7 +156,10 @@ func _physics_process(delta: float) -> void:
 		slide_triggered = false
 
 	# Face movement direction (not while sliding)
-	if direction.length() > 0 and not sliding and not velocity == Vector3(0, 0, 0):
+	if current_state == State.HANGING:
+		var point = $RayCastClimb.get_collision_point()
+		visuals.look_at(Vector3(position.x + point.x, position.y + Vector3.ZERO.y, position.z + point.z))
+	elif direction.length() > 0 and not sliding and not velocity == Vector3(0, 0, 0):
 		visuals.look_at(Vector3(position.x + velocity.x, position.y + Vector3.ZERO.y, position.z + velocity.z))
 
 	# Speed setting
@@ -150,7 +173,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = -input_dir.y * climbing_speed *delta * 1.5
 		else:
 			velocity.y = -input_dir.y * climbing_speed *delta
-	elif not sliding:
+	elif not sliding and current_state == State.NORMAL:
 		velocity.x += direction.x * speed * delta
 		velocity.z += direction.z * speed * delta
 	visuals.scale = Vector3(1, 1, 1)
@@ -165,7 +188,7 @@ func _physics_process(delta: float) -> void:
 		visuals.scale = Vector3(-1, 1, 1)  # Flip horizontally (left wall)
 		if Input.is_action_just_pressed("ui_accept"):
 			velocity += transform.basis.x * -8
-			velocity.y = 2
+			velocity.y = wall_jump_height
 	elif $RayCastLeft.is_colliding() and direction.length() > 0 and velocity.distance_to(Vector3(0, velocity.y, 0)) > 4 and not on_floor:
 		wallrunning = true
 		can_double_jump = true
@@ -174,11 +197,6 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_accept"):
 			velocity += transform.basis.x * 8
 			velocity.y = 2
-	
-	# Climbing logic
-	climbing = $RayCastClimb.is_colliding() and not $RayCastClimb2.is_colliding()
-	if climbing:
-		velocity.y = 6
 		
 	# Friction calculation
 	var frictionFactorK
@@ -241,9 +259,11 @@ func update_object_interaction() -> void:
 func update_animation(direction: Vector3, on_floor: bool):
 	if current_state == State.LADDER:
 		play_anim("ladder_climbing")
+	elif current_state == State.HANGING:
+		play_anim("hanging_idle")
 	elif sliding:
 		play_anim("slide")
-	elif climbing:
+	elif current_state == State.CLIMBING:
 		play_anim("climbing")
 	elif wallrunning:
 		play_anim("wall_run_001")

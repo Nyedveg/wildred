@@ -469,6 +469,30 @@ metadata/_custom_type_script = "uid://bmbv8wopn2cti"
 [node name="player" parent="." instance=ExtResource("1_dd0lh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
+[node name="readyToSlide" type="Timer" parent="player"]
+wait_time = 2.0
+one_shot = true
+
+[node name="RayCastAbove" type="RayCast3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65097, 0)
+target_position = Vector3(0, 0.5, 0)
+
+[node name="RayCastClimb" type="RayCast3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 0.00966899, 0.999953, 0, -0.999953, 0.00966899, 0, 1.65097, 0)
+target_position = Vector3(0, 0.5, 0)
+
+[node name="RayCastClimb2" type="RayCast3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 0.00966899, 0.999953, 0, -0.999953, 0.00966899, 0, 2.03589, 0)
+target_position = Vector3(0, 0.8, 0)
+
+[node name="RayCastRight" type="RayCast3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.899915, 0)
+target_position = Vector3(0.5, 0, 0)
+
+[node name="RayCastLeft" type="RayCast3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.899915, 0)
+target_position = Vector3(-0.5, 0, 0)
+
 [node name="Environment" type="Node" parent="."]
 
 [node name="water" type="MeshInstance3D" parent="Environment"]
@@ -1681,3 +1705,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.47726, 4.83272)
 
 [node name="Ladder4" parent="." instance=ExtResource("26_arkx4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3463, 4.83272)
+
+[connection signal="timeout" from="player/readyToSlide" to="player" method="_on_ready_to_slide_timeout"]

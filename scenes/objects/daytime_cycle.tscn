@@ -36,7 +36,7 @@ shader_parameter/stars_texture = ExtResource("3_0oqq5")
 shader_parameter/stars_speed = 1.0
 shader_parameter/stars_scale = 1.0
 shader_parameter/stars_opacity = 0.3
-shader_parameter/overwritten_time = 2940.0
+shader_parameter/overwritten_time = 3771.0
 
 [sub_resource type="Sky" id="Sky_l4dqn"]
 sky_material = SubResource("ShaderMaterial_msgkm")
@@ -45,6 +45,7 @@ sky_material = SubResource("ShaderMaterial_msgkm")
 background_mode = 2
 sky = SubResource("Sky_l4dqn")
 ambient_light_source = 3
+ssr_enabled = true
 glow_enabled = true
 glow_blend_mode = 0
 fog_density = 1.0

@@ -1,24 +1,100 @@
-[gd_scene load_steps=5 format=3 uid="uid://bes3yt70cs8t0"]
+[gd_scene load_steps=10 format=3 uid="uid://bes3yt70cs8t0"]
 
-[ext_resource type="Texture2D" uid="uid://fyt6xh50ij22" path="res://textures/placeholder_grid.png" id="1_0huwb"]
 [ext_resource type="PackedScene" uid="uid://lvl0jvu6h5j" path="res://scenes/objects/player.tscn" id="1_1mgh8"]
-[ext_resource type="PackedScene" uid="uid://bjjceeyq3csc3" path="res://scenes/objects/daytime_cycle.tscn" id="2_8a5hx"]
+[ext_resource type="Material" uid="uid://bb43ngplsfis2" path="res://resources/materials/FlexibleToonMaterial.tres" id="1_8a5hx"]
+[ext_resource type="Shader" uid="uid://cg1i1fei7q2o0" path="res://shaders/outline_shader.gdshader" id="2_uyg78"]
+[ext_resource type="Shader" uid="uid://ckc7m8abi04es" path="res://shaders/flexible_toon.gdshader" id="3_eulud"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyg78"]
-shading_mode = 2
-albedo_texture = ExtResource("1_0huwb")
-metallic_specular = 0.0
-uv1_scale = Vector3(1000, 1000, 1000)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8a5hx"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_0huwb"]
+sky_material = SubResource("ProceduralSkyMaterial_8a5hx")
+
+[sub_resource type="Environment" id="Environment_uyg78"]
+background_mode = 2
+sky = SubResource("Sky_0huwb")
+ambient_light_source = 3
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fe5r6"]
+render_priority = 0
+shader = ExtResource("2_uyg78")
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = true
+shader_parameter/shadow_strength = 0.4
+shader_parameter/highlight_strength = 0.1
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8c4q"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_fe5r6")
+shader = ExtResource("3_eulud")
+shader_parameter/albedo = Color(0.90578, 0.917714, 0.891636, 1)
+shader_parameter/clamp_diffuse_to_max = false
+shader_parameter/cuts = 3
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = 1.0
+shader_parameter/use_attenuation = true
+shader_parameter/use_specular = false
+shader_parameter/specular_strength = 1.0
+shader_parameter/specular_shininess = 16.0
+shader_parameter/use_rim = false
+shader_parameter/rim_width = 8.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/use_ramp = false
+shader_parameter/use_borders = false
+shader_parameter/border_width = 0.01
 
 [node name="TestWorld" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.500549, 0)
-use_collision = true
-size = Vector3(5000, 1, 5000)
-material = SubResource("StandardMaterial3D_uyg78")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433017, 0.250001, -0.404573, 0.900661, 0.158525, -0.29381, 0.036143, -0.95518, 0, 3.49447, 0)
+shadow_enabled = true
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.3
+directional_shadow_blend_splits = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uyg78")
 
 [node name="player" parent="." instance=ExtResource("1_1mgh8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00140905, 0, -0.0215168)
 
-[node name="DaytimeCycle" parent="." instance=ExtResource("2_8a5hx")]
+[node name="TestUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TestUI"]
+layout_mode = 0
+offset_right = 117.0
+offset_bottom = 40.0
+text = "This is text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="environment" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.500549, 0)
+use_collision = true
+size = Vector3(5000, 1, 5000)
+material = SubResource("ShaderMaterial_a8c4q")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98256, 0.627686, 0)
+height = 3.25537
+material = ExtResource("1_8a5hx")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9651, 1.25537, 0)
+radius = 2.0293
+height = 3.25537
+material = ExtResource("1_8a5hx")

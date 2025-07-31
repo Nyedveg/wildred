@@ -1,10 +1,9 @@
-[gd_scene load_steps=82 format=3 uid="uid://bnvjspnflyxh"]
+[gd_scene load_steps=80 format=3 uid="uid://bnvjspnflyxh"]
 
 [ext_resource type="PackedScene" uid="uid://lvl0jvu6h5j" path="res://scenes/objects/player.tscn" id="1_dd0lh"]
 [ext_resource type="Material" uid="uid://xhnl4bmbbajh" path="res://resources/shader_materials/water_mat.tres" id="2_bfxgj"]
 [ext_resource type="PackedScene" uid="uid://bjjceeyq3csc3" path="res://scenes/objects/daytime_cycle.tscn" id="3_dywbp"]
 [ext_resource type="Material" uid="uid://3k13k1r7ga8i" path="res://resources/materials/white_rock_generic.tres" id="4_1seuy"]
-[ext_resource type="PackedScene" uid="uid://dffaqvr7m7y0y" path="res://scenes/objects/sleeping_dragon.tscn" id="4_bfxgj"]
 [ext_resource type="Material" uid="uid://dn7ix2kie4cga" path="res://resources/materials/sand_generic.tres" id="5_2r1tl"]
 [ext_resource type="PackedScene" uid="uid://c8eycvfgntsqh" path="res://scenes/objects/shrine.tscn" id="6_bw3ef"]
 [ext_resource type="Script" uid="uid://dqb4b5nqqeisu" path="res://addons/proton_scatter/src/scatter.gd" id="6_sbmf2"]
@@ -17,7 +16,6 @@
 [ext_resource type="Script" uid="uid://dyaitfltk54ve" path="res://addons/proton_scatter/src/scatter_item.gd" id="13_6gwlt"]
 [ext_resource type="Script" uid="uid://pfxxp61wyi71" path="res://addons/proton_scatter/src/scatter_shape.gd" id="14_c2nc4"]
 [ext_resource type="Script" uid="uid://clewe4ga5ljbp" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="15_1xax6"]
-[ext_resource type="PackedScene" uid="uid://devhskeyhdq7r" path="res://scenes/objects/shipwreck.tscn" id="15_ps2vj"]
 [ext_resource type="Script" uid="uid://bmbv8wopn2cti" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="16_6gwlt"]
 [ext_resource type="Script" uid="uid://b2xeovxrqw6sq" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="17_c2nc4"]
 [ext_resource type="PackedScene" uid="uid://t08t0gj78dqw" path="res://scenes/objects/foliage/trees/normal_tree_1.tscn" id="18_jrfo0"]
@@ -1628,12 +1626,6 @@ transform = Transform3D(1.97236, -0.125486, 0.306704, 0.153635, 1.98637, -0.1752
 transform = Transform3D(-1.62495, 0.294178, 2.5046, 1.49012e-08, 2.97952, -0.34996, -2.52181, -0.189556, -1.61385, 22.9377, 12.6324, 8.54964)
 
 [node name="Other" type="Node" parent="Environment"]
-
-[node name="sleeping_dragon" parent="Environment/Other" instance=ExtResource("4_bfxgj")]
-transform = Transform3D(-0.504527, 0, -0.324734, 0, 0.6, 0, 0.324734, 0, -0.504527, 50.869, -1.96775, 94.849)
-
-[node name="shipwreck" parent="Environment/Other" instance=ExtResource("15_ps2vj")]
-transform = Transform3D(0.0977379, 0.0166313, -0.0130651, -0.00809787, 0.0864959, 0.0495266, 0.0195376, -0.0473483, 0.0858861, 14.9519, 6.90156, -18.3142)
 
 [node name="Barrel_normal" parent="Environment/Other" instance=ExtResource("24_vhxpm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.34942, 0.499998, 4.35355)

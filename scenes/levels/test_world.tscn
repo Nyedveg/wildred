@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bes3yt70cs8t0"]
+
+[ext_resource type="Texture2D" uid="uid://fyt6xh50ij22" path="res://textures/placeholder_grid.png" id="1_0huwb"]
+[ext_resource type="PackedScene" uid="uid://lvl0jvu6h5j" path="res://scenes/objects/player.tscn" id="1_1mgh8"]
+[ext_resource type="PackedScene" uid="uid://bjjceeyq3csc3" path="res://scenes/objects/daytime_cycle.tscn" id="2_8a5hx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyg78"]
+shading_mode = 2
+albedo_texture = ExtResource("1_0huwb")
+metallic_specular = 0.0
+uv1_scale = Vector3(1000, 1000, 1000)
+
+[node name="TestWorld" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.500549, 0)
+use_collision = true
+size = Vector3(5000, 1, 5000)
+material = SubResource("StandardMaterial3D_uyg78")
+
+[node name="player" parent="." instance=ExtResource("1_1mgh8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00140905, 0, -0.0215168)
+
+[node name="DaytimeCycle" parent="." instance=ExtResource("2_8a5hx")]
